@@ -1,0 +1,26 @@
+﻿ACESSIFOOD - INTRODUÇÃO
+
+
+De acordo com dados da pesquisa conduzida pela Web para Todos (2024), apenas 2,9% dos sites brasileiros foram aprovados em todos os testes de acessibilidade. Segundo o Governo do Brasil, cerca de 168 milhões de brasileiros possuem acesso a internet, mas infelizmente, uma porção dessas pessoas acaba possuindo dificuldades ao acessar websites ou aplicativos, não conseguindo acessar certas ferramentas que precisam, seja em um aplicativo de banco, pedindo comida, ou comprando alguma coisa online, isso pode acabar atrapalhando pequenos vendedores de comida, sendo limitados por sites e aplicativos de restaurantes online difíceis de acessar e utilizar, evitando possíveis vendas e a expansão desses vendedores.
+Para Thoran Rodrigues, CEO da BigDataCorp, os resultados da pesquisa conduzida pela Web para Todos (2024) mostraram que ainda há muito a ser melhorado nos sites brasileiros. “O aumento da quantidade de sites ativos, principalmente os sites pequenos, nos quais a preocupação com acessibilidade não está no topo, é um dos fatores que pode indicar o declínio da acessibilidade digital no país.”
+Em plataformas como o Ifood e outros aplicativos de delivery de comida, que possuem uma interface fácil de se utilizar para a maioria dos usuários, apresentam, segundo avaliações do Reclame Aqui, problemas quanto à acessibilidade, como o excesso de pop-us, interface complicada para pessoas com deficiências visuais ou janelas de avaliação obrigatória que atrapalham a experiência de usuários com deficiências cognitivas ou motoras.
+A diferença e inovação da plataforma AcessiFood é o acolhimento a todos os tipos de usuários, com ferramentas de acessibilidade com base em estudos e pesquisas, seja na parte visual, como na interface, com customização de botões, cores, tamanho, ou no funcionamento do aplicativo, com guias fáceis de serem seguidos e suporte rápido aos usuários vendedores, como dicas de comércio, relatórios de vendas e agendamento de entregas.
+O objetivo principal da plataforma é contribuir para que pequenos vendedores, principalmente aqueles que possuam alguma dificuldade, consigam criar seus comércios sem encontrar nenhuma dificuldade no caminho e apresentar ajudas a mais.
+
+
+
+
+
+
+REFERÊNCIAS
+MOVIMENTO WEB PARA TODOS. Apenas 2,9% dos sites brasileiros foram aprovados
+em todos os testes de acessibilidade, aponta pesquisa. 2024. 
+Disponível em: https://mwpt.com.br/apenas-29-dos-sites-brasileiros-foram-aprovados-em-todos-os-testes-de-acessibilidade-aponta-pesquisa/. Acesso em: 24 abr. 2024.
+
+
+RECLAME AQUI. 
+iFood: Dificuldade de entrega para pessoas com deficiência e recusa de estorno. 2025. Disponível em: https://www.reclameaqui.com.br/ifood/dificuldade-de-
+entrega-para-pessoas-com-deficiencia-e-recusa-de-estorno-no_rkMHAVDMo-pjJnXU/.
+
+
+Acesso em: 28 abr. 2026.
