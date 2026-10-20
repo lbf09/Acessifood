@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#c64032">
+  <meta name="application-name" content="AcessiFood">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="description" content="AcessiFood: uma plataforma de alimentação inclusiva para clientes e pequenos vendedores.">
+  <title>AcessiFood — Sabor, autonomia e inclusão</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Pular para o conteúdo principal</a>
+  <div class="topline">
+    <div class="wrap topline-inner">
+      <span><span aria-hidden="true">♿</span> Acessibilidade não é um extra. Faz parte da experiência.</span>
+      <div class="topline-actions">
+        <button type="button" class="text-action" id="openA11yTop">Ajustes de acessibilidade <span aria-hidden="true">↗</span></button>
+        <span class="topline-dot" aria-hidden="true"></span><span>Protótipo demonstrativo</span>
+      </div>
+    </div>
+  </div>
+  <header class="header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#inicio" data-view-link="home" aria-label="AcessiFood — página inicial">
+        <span class="brand-symbol" aria-hidden="true">a</span>
+        <span class="brand-word">Acessi<span>Food</span><small>COMIDA BOA PARA TODOS</small></span>
+      </a>
+      <nav class="main-nav" id="mainNav" aria-label="Navegação principal">
+        <button type="button" data-view="home" class="nav-link active" aria-current="page">Explorar</button>
+        <button type="button" data-view="about" class="nav-link">O projeto</button>
+        <button type="button" data-view="preferences" class="nav-link">Preferências</button>
+        <button type="button" data-view="orders" class="nav-link">Meus pedidos <span id="navOrderCount" class="nav-count">0</span></button>
+        <button type="button" data-view="profile" class="nav-link">Perfil</button>
+        <button type="button" data-view="seller" class="nav-link">Área do vendedor</button>
+        <button type="button" data-view="downloads" class="nav-link">Baixar Desktop <span aria-hidden="true">↓</span></button>
+      </nav>
+      <div class="header-tools">
+        <button class="icon-button" id="openA11y" aria-label="Abrir ajustes de acessibilidade" title="Acessibilidade">◐</button>
+        <button class="cart-button" id="openCart"><span aria-hidden="true">♧</span> Sacola <b id="cartCount">0</b></button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu de navegação" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="mainContent" class="wrap main">
+    <div id="toastRegion" class="toast-region" role="status" aria-live="polite"></div>
+
+    <!-- EXPLORAR -->
+    <section class="view" id="view-home" data-view-panel="home">
+      <div class="hero">
+        <div class="hero-content">
+          <span class="eyebrow"><span class="eyebrow-line"></span> SABOR, CUIDADO E INCLUSÃO</span>
+          <h1>Seu jeito de comer.<br><span>Seu jeito de escolher.</span></h1>
+          <p>Descubra pequenos negócios e refeições que respeitam suas preferências. Uma experiência pensada para dar mais autonomia a cada pessoa.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" type="button" data-scroll="#catalog">Explorar cardápio <span aria-hidden="true">→</span></button>
+            <button class="btn btn-light" type="button" data-view="preferences">Personalizar experiência</button>
+            <button class="btn btn-outline" type="button" data-view="downloads">Baixar Desktop ↓</button>
+          </div>
+          <div class="hero-benefits">
+            <span><b aria-hidden="true">✓</b> Preferências alimentares</span>
+            <span><b aria-hidden="true">✓</b> Controles acessíveis</span>
+            <span><b aria-hidden="true">✓</b> Pequenos negócios</span>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="assets/food-table.jpg" alt="Mesa com variedade de alimentos frescos e coloridos">
+          <div class="hero-floating-card">
+            <span class="floating-icon" aria-hidden="true">♡</span>
+            <span><strong>Escolhas que acolhem</strong><small>Filtre pratos pelo que importa para você</small></span>
+          </div>
+          <span class="hero-stamp" aria-hidden="true">FEITO PARA<br>TODOS</span>
+        </div>
+      </div>
+
+      <section class="trust-strip" aria-label="Princípios da plataforma">
+        <div><span class="trust-icon" aria-hidden="true">⌁</span><span><strong>Mais autonomia</strong><small>Controles simples e ajustáveis</small></span></div>
+        <div><span class="trust-icon" aria-hidden="true">♡</span><span><strong>Escolhas conscientes</strong><small>Preferências claras no cardápio</small></span></div>
+        <div><span class="trust-icon" aria-hidden="true">⌂</span><span><strong>Comércio local</strong><small>Visibilidade a pequenos vendedores</small></span></div>
+      </section>
+
+      <section class="catalog-section" id="catalog">
+        <div class="section-head">
+          <div><span class="eyebrow"><span class="eyebrow-line"></span> ENCONTRE SEU PRÓXIMO FAVORITO</span><h2>O que vai ser hoje?</h2><p>Busque por prato, loja ou ingrediente. Filtre e escolha com tranquilidade.</p></div>
+          <button class="btn btn-outline" type="button" data-view="preferences">♡ Minhas preferências</button>
+        </div>
+        <div class="catalog-controls">
+          <label class="search-box"><span aria-hidden="true">⌕</span><span class="sr-only">Buscar produtos</span><input id="searchInput" type="search" placeholder="Buscar pratos, lojas ou ingredientes..."><kbd>/</kbd></label>
+          <label class="sort-control"><span>Ordenar por</span><select id="sortSelect" aria-label="Ordenar produtos"><option value="recommended">Recomendados</option><option value="priceAsc">Menor preço</option><option value="priceDesc">Maior preço</option><option value="name">Nome (A–Z)</option></select></label>
+        </div>
+        <div class="filter-row" id="categoryFilters" role="group" aria-label="Categorias de produtos">
+          <button type="button" class="filter-chip selected" data-category="Todos" aria-pressed="true">✦ Todos</button>
+          <button type="button" class="filter-chip" data-category="Brasileira" aria-pressed="false">♨ Brasileira</button>
+          <button type="button" class="filter-chip" data-category="Hambúrgueres" aria-pressed="false">☰ Hambúrgueres</button>
+          <button type="button" class="filter-chip" data-category="Pizzas" aria-pressed="false">◉ Pizzas</button>
+          <button type="button" class="filter-chip" data-category="Vegetariana" aria-pressed="false">❋ Vegetariana</button>
+          <button type="button" class="filter-chip" data-category="Sem glúten" aria-pressed="false">♡ Sem glúten</button>
+          <button type="button" class="filter-chip" data-category="Sem lactose" aria-pressed="false">♡ Sem lactose</button>
+        </div>
+        <div class="recommendation-note" id="recommendationNote"><span aria-hidden="true">✦</span><span><strong>Recomendações personalizadas</strong><small>Filtros alimentares selecionados são aplicados ao catálogo. Alergias digitadas aqui são informativas e devem ser confirmadas com o vendedor.</small></span><button type="button" data-view="preferences">Configurar →</button></div>
+        <div class="product-grid" id="productGrid" aria-live="polite" aria-busy="false"></div>
+        <div id="emptyProducts" class="empty-state" hidden><span aria-hidden="true">⌕</span><h3>Nenhum prato encontrado</h3><p>Tente outro termo ou limpe os filtros.</p><button class="btn btn-outline" id="clearFilters" type="button">Limpar filtros</button></div>
+      </section>
+
+      <section class="seller-callout">
+        <div class="seller-callout-icon" aria-hidden="true">↗</div><div><span class="eyebrow">PARA QUEM PRODUZ</span><h2>Seu talento merece ser encontrado.</h2><p>Crie sua loja, cadastre pratos e acompanhe as vendas em um só lugar.</p></div>
+        <button class="btn btn-dark" type="button" data-view="seller">Conhecer área do vendedor <span aria-hidden="true">→</span></button>
+      </section>
+    </section>
+
+    <!-- OBJETIVO E PROPOSTA DO PROJETO -->
+    <section class="view" id="view-about" data-view-panel="about" hidden>
+      <div class="about-hero">
+        <div class="about-hero-copy">
+          <span class="eyebrow"><span class="eyebrow-line"></span> POR QUE O ACESSIFOOD EXISTE</span>
+          <h1>Comer e vender online deve ser possível <span>para todo mundo.</span></h1>
+          <p>O AcessiFood é uma proposta de plataforma de alimentação digital inclusiva que une a descoberta e compra de refeições a ferramentas de acessibilidade e recursos práticos para pequenos comerciantes.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" type="button" data-view="preferences">Personalizar acessibilidade <span aria-hidden="true">→</span></button>
+            <button class="btn btn-light" type="button" data-view="seller">Conhecer a área do vendedor</button>
+          </div>
+        </div>
+        <div class="about-hero-art"><img src="assets/food-table.jpg" alt="Mesa com diferentes alimentos representando a variedade de escolhas"><div class="about-art-caption"><span aria-hidden="true">♡</span><span><strong>Autonomia para quem compra</strong><small>Mais oportunidades para quem vende</small></span></div></div>
+      </div>
+
+      <div class="about-statements">
+        <article class="about-statement objective"><span class="about-number">01</span><span class="eyebrow">OBJETIVO PRINCIPAL</span><h2>Reduzir barreiras digitais.</h2><p>Contribuir para que pessoas com diferentes necessidades consigam navegar, encontrar informações e realizar escolhas com mais independência, enquanto pequenos vendedores possam apresentar e organizar seus negócios sem uma interface excessivamente complicada.</p></article>
+        <article class="about-statement proposal"><span class="about-number">02</span><span class="eyebrow">NOSSA PROPOSTA</span><h2>Uma experiência adaptável para os dois lados.</h2><p>Oferecer ajustes visuais e de interação para clientes, preferências alimentares e um fluxo de compra guiado; e, para vendedores, cadastro de loja, gestão de produtos e estoque, acompanhamento das vendas e relatórios.</p></article>
+      </div>
+
+      <section class="about-section">
+        <div class="section-head"><div><span class="eyebrow"><span class="eyebrow-line"></span> O PROBLEMA QUE QUEREMOS ENFRENTAR</span><h2>Acessibilidade também faz parte do atendimento.</h2><p>Menus confusos, textos difíceis de ler, controles pequenos e informações alimentares pouco visíveis podem dificultar tarefas digitais cotidianas.</p></div></div>
+        <div class="about-pillars">
+          <article><span class="pillar-icon" aria-hidden="true">◎</span><h3>Para clientes</h3><p>Buscar pratos, aplicar filtros, comparar informações, montar a sacola e acompanhar pedidos com passos claros.</p><button type="button" class="text-link" data-view="home">Explorar o cardápio →</button></article>
+          <article><span class="pillar-icon" aria-hidden="true">♿</span><h3>Para diferentes necessidades</h3><p>Ajustar tipografia, contraste, espaçamento, foco, animações e outros elementos para uma leitura mais confortável.</p><button type="button" class="text-link" data-open-a11y>Ver ferramentas de acessibilidade →</button></article>
+          <article><span class="pillar-icon" aria-hidden="true">⌂</span><h3>Para pequenos vendedores</h3><p>Organizar catálogo, preços, estoque e status de pedidos, além de consultar vendas por cliente, data ou pedido.</p><button type="button" class="text-link" data-view="seller">Acessar painel do vendedor →</button></article>
+        </div>
+      </section>
+
+      <section class="about-section tools-explainer">
+        <div class="section-head"><div><span class="eyebrow"><span class="eyebrow-line"></span> FERRAMENTAS COM PROPÓSITO</span><h2>O que cada recurso faz?</h2><p>Os controles não são apenas visuais: cada um foi pensado para facilitar uma tarefa específica.</p></div></div>
+        <div class="tool-purpose-grid">
+          <article><span class="tool-number">A1</span><div><h3>Texto ampliado e fonte legível</h3><p>Facilitam a leitura ao ampliar o texto ou usar uma família tipográfica simples e espaçamento mais confortável.</p></div></article>
+          <article><span class="tool-number">A2</span><div><h3>Alto contraste e redução de cores</h3><p>Ajudam a distinguir conteúdo e controles, ou reduzem a intensidade das imagens para quem prefere menos saturação.</p></div></article>
+          <article><span class="tool-number">A3</span><div><h3>Espaçamento de linhas e letras</h3><p>Cria mais separação visual entre linhas, palavras e caracteres para acompanhar o texto com mais facilidade.</p></div></article>
+          <article><span class="tool-number">A4</span><div><h3>Realce de links e foco</h3><p>Deixa links sublinhados e destaca com mais intensidade o elemento ativo durante a navegação pelo teclado.</p></div></article>
+          <article><span class="tool-number">A5</span><div><h3>Guia de leitura</h3><p>Exibe uma faixa horizontal que acompanha o ponteiro ou o elemento em foco para ajudar a seguir uma linha de texto.</p></div></article>
+          <article><span class="tool-number">A6</span><div><h3>Modo foco e controles maiores</h3><p>Reduz alguns elementos decorativos e amplia áreas clicáveis para tornar a interface menos distrativa e mais fácil de operar.</p></div></article>
+          <article><span class="tool-number">A7</span><div><h3>Leitura de resumo por voz</h3><p>Usa a síntese de voz disponível no navegador para anunciar um resumo da seção atual. A disponibilidade depende do dispositivo e do navegador.</p></div></article>
+          <article><span class="tool-number">A8</span><div><h3>Teclado e pular para o conteúdo</h3><p>Permite percorrer controles com Tab e Shift+Tab, acionar botões com Enter ou Espaço e ir direto ao conteúdo principal pelo link no topo.</p></div></article>
+          <article><span class="tool-number">A9</span><div><h3>Modo escuro</h3><p>Oferece uma paleta escura alternativa para quem prefere menos luminosidade na interface. O efeito pode variar conforme a tela e a iluminação do ambiente.</p></div></article>
+          <article><span class="tool-number">A10</span><div><h3>Alinhamento à esquerda</h3><p>Evita alinhamentos variados em blocos de texto e ajuda a localizar o começo de cada linha durante a leitura.</p></div></article>
+          <article><span class="tool-number">A11</span><div><h3>Cursor ampliado</h3><p>Ajuda a localizar o ponteiro e a perceber com mais facilidade onde será feita a próxima interação com o mouse.</p></div></article>
+          <article><span class="tool-number">A12</span><div><h3>Escala de cinza</h3><p>Apresenta a interface sem cores, como alternativa para pessoas que preferem reduzir estímulos cromáticos. Informações importantes continuam identificadas por texto e forma.</p></div></article>
+          <article><span class="tool-number">A13</span><div><h3>Leitura por voz com controle</h3><p>O resumo da seção pode ser lido em voz alta e a leitura pode ser interrompida a qualquer momento, conforme o suporte do navegador.</p></div></article>
+        </div>
+        <div class="about-cta"><div><strong>Experimente as ferramentas na prática.</strong><p>As opções escolhidas ficam salvas neste navegador e podem ser restauradas a qualquer momento.</p></div><button type="button" class="btn btn-primary" data-open-a11y>Configurar acessibilidade <span aria-hidden="true">→</span></button></div>
+      </section>
+
+      <section class="about-section project-flow-section">
+        <div class="section-head"><div><span class="eyebrow"><span class="eyebrow-line"></span> COMO A PROPOSTA SE CONECTA</span><h2>Da descoberta ao acompanhamento.</h2><p>O AcessiFood organiza o caminho em tarefas simples e explica o que acontece em cada etapa.</p></div></div>
+        <div class="project-flow"><div><span>1</span><strong>Descobrir</strong><small>Buscar produtos e filtrar opções.</small></div><div><span>2</span><strong>Personalizar</strong><small>Ajustar acessibilidade e preferências.</small></div><div><span>3</span><strong>Escolher</strong><small>Conferir descrição, preço e características.</small></div><div><span>4</span><strong>Acompanhar</strong><small>Consultar pedidos e status.</small></div></div>
+        <p class="prototype-disclaimer"><strong>Sobre esta versão:</strong> este site é um protótipo funcional de front-end. O objetivo e a proposta representam o projeto; pagamento, entrega, contas de usuário e sincronização com vendedores reais ainda exigem backend e integrações próprias. Os rótulos alimentares não substituem a confirmação de ingredientes com o vendedor.</p>
+      </section>
+    </section>
+
+    <!-- PREFERÊNCIAS -->
+    <section class="view" id="view-preferences" data-view-panel="preferences" hidden>
+      <div class="page-heading"><span class="eyebrow"><span class="eyebrow-line"></span> DO SEU JEITO</span><h1>Suas preferências</h1><p>Personalize a experiência e use as opções alimentares como filtros do catálogo. Informe apenas o que desejar.</p></div>
+      <div class="settings-layout">
+        <aside class="settings-aside">
+          <div class="aside-illustration" aria-hidden="true">♡</div><h2>Você no centro das escolhas.</h2><p>As preferências salvas neste protótipo ficam apenas neste navegador. Sempre confira os ingredientes com o vendedor, especialmente em caso de alergias.</p>
+          <div class="safety-note"><strong>Importante</strong><span>Os rótulos são informativos e não garantem ausência de contaminação cruzada.</span></div>
+        </aside>
+        <form id="preferencesForm" class="panel form-panel">
+          <div class="panel-heading"><div><h2>Alimentação</h2><p>Selecione condições e características que deseja considerar.</p></div><span class="panel-step">01</span></div>
+          <fieldset class="form-fieldset"><legend>Restrições e intolerâncias</legend><div class="check-grid">
+            <label class="check-card"><input type="checkbox" name="glutenFree"><span class="check-custom"></span><span><strong>Evitar glúten</strong><small>Exibir opções marcadas sem glúten</small></span></label>
+            <label class="check-card"><input type="checkbox" name="lactoseFree"><span class="check-custom"></span><span><strong>Evitar lactose</strong><small>Exibir opções marcadas sem lactose</small></span></label>
+            <label class="check-card"><input type="checkbox" name="vegetarian"><span class="check-custom"></span><span><strong>Vegetariana</strong><small>Priorizar pratos vegetarianos</small></span></label>
+            <label class="check-card"><input type="checkbox" name="vegan"><span class="check-custom"></span><span><strong>Vegana</strong><small>Priorizar pratos marcados como veganos</small></span></label>
+          </div></fieldset>
+          <div class="field"><label for="allergies">Alergias alimentares</label><input id="allergies" name="allergies" placeholder="Ex.: amendoim, camarão, castanhas"><small>Campo informativo. A busca não substitui a confirmação com o restaurante.</small></div>
+          <div class="form-two"><div class="field"><label for="taste">Prefere</label><select id="taste" name="taste"><option value="both">Doce e salgado</option><option value="sweet">Doce</option><option value="savory">Salgado</option></select></div>
+          <div class="field"><label for="temperature">Clima / temperatura</label><select id="temperature" name="temperature"><option value="any">Sem preferência</option><option value="cold">Prefiro opções quentes (ex.: sopa)</option><option value="hot">Prefiro opções refrescantes (ex.: sorvete)</option></select></div></div>
+          <div class="panel-heading subsection"><div><h2>Acessibilidade visual e de interação</h2><p>As mudanças são aplicadas imediatamente e ficam salvas neste navegador.</p></div><span class="panel-step">02</span></div>
+          <div class="setting-row"><span><strong>Texto ampliado</strong><small>Aumenta o tamanho dos textos e controles.</small></span><label class="switch"><input type="checkbox" name="largeText" id="prefLargeText" data-a11y-pref="largeText"><span></span><em class="sr-only">Ativar texto ampliado</em></label></div>
+          <div class="setting-row"><span><strong>Alto contraste</strong><small>Reforça o contraste entre texto, fundo e controles.</small></span><label class="switch"><input type="checkbox" name="highContrast" id="prefHighContrast" data-a11y-pref="highContrast"><span></span><em class="sr-only">Ativar alto contraste</em></label></div>
+          <div class="setting-row"><span><strong>Reduzir animações</strong><small>Reduz movimentos e transições decorativas.</small></span><label class="switch"><input type="checkbox" name="reducedMotion" id="prefReducedMotion" data-a11y-pref="reducedMotion"><span></span><em class="sr-only">Reduzir animações</em></label></div>
+          <div class="setting-row"><span><strong>Fonte fácil de ler</strong><small>Usa uma fonte sem serifa com espaçamento maior.</small></span><label class="switch"><input type="checkbox" name="readableFont" id="prefReadableFont" data-a11y-pref="readableFont"><span></span><em class="sr-only">Ativar fonte fácil de ler</em></label></div>
+          <div class="setting-row"><span><strong>Maior espaçamento entre linhas</strong><small>Abre o espaço vertical entre blocos e linhas de texto.</small></span><label class="switch"><input type="checkbox" name="relaxedLines" data-a11y-pref="relaxedLines"><span></span><em class="sr-only">Maior espaçamento entre linhas</em></label></div>
+          <div class="setting-row"><span><strong>Mais espaço entre letras e palavras</strong><small>Ajuda a separar visualmente caracteres e palavras.</small></span><label class="switch"><input type="checkbox" name="wideSpacing" data-a11y-pref="wideSpacing"><span></span><em class="sr-only">Mais espaço entre letras e palavras</em></label></div>
+          <div class="setting-row"><span><strong>Sublinhar links</strong><small>Não depender apenas da cor para identificar links.</small></span><label class="switch"><input type="checkbox" name="highlightLinks" data-a11y-pref="highlightLinks"><span></span><em class="sr-only">Sublinhar links</em></label></div>
+          <div class="setting-row"><span><strong>Realce reforçado de foco</strong><small>Destaca os elementos quando você navega pelo teclado.</small></span><label class="switch"><input type="checkbox" name="strongFocus" data-a11y-pref="strongFocus"><span></span><em class="sr-only">Realce reforçado de foco</em></label></div>
+          <div class="setting-row"><span><strong>Guia de leitura</strong><small>Faixa horizontal acompanha o ponteiro e o elemento em foco.</small></span><label class="switch"><input type="checkbox" name="readingGuide" data-a11y-pref="readingGuide"><span></span><em class="sr-only">Ativar guia de leitura</em></label></div>
+          <div class="setting-row"><span><strong>Modo foco / menos distrações</strong><small>Esconde alguns elementos decorativos, preservando o conteúdo principal.</small></span><label class="switch"><input type="checkbox" name="focusMode" data-a11y-pref="focusMode"><span></span><em class="sr-only">Ativar modo foco</em></label></div>
+          <div class="setting-row"><span><strong>Reduzir saturação das imagens</strong><small>Diminui cores intensas em fotografias e ilustrações.</small></span><label class="switch"><input type="checkbox" name="lowSaturation" data-a11y-pref="lowSaturation"><span></span><em class="sr-only">Reduzir saturação das imagens</em></label></div>
+          <div class="setting-row"><span><strong>Botões e áreas clicáveis maiores</strong><small>Amplia alvos de toque para facilitar a interação.</small></span><label class="switch"><input type="checkbox" name="largeControls" data-a11y-pref="largeControls"><span></span><em class="sr-only">Ampliar botões e áreas clicáveis</em></label></div>
+          <div class="setting-row"><span><strong>Modo escuro</strong><small>Usa fundos escuros e texto claro para uma experiência visual alternativa.</small></span><label class="switch"><input type="checkbox" name="darkMode" data-a11y-pref="darkMode"><span></span><em class="sr-only">Ativar modo escuro</em></label></div>
+          <div class="setting-row"><span><strong>Alinhamento de texto à esquerda</strong><small>Mantém os blocos de texto alinhados à esquerda para facilitar o acompanhamento das linhas.</small></span><label class="switch"><input type="checkbox" name="leftAlign" data-a11y-pref="leftAlign"><span></span><em class="sr-only">Alinhar textos à esquerda</em></label></div>
+          <div class="setting-row"><span><strong>Cursor ampliado</strong><small>Aumenta o ponteiro do mouse em links, botões e áreas interativas.</small></span><label class="switch"><input type="checkbox" name="largeCursor" data-a11y-pref="largeCursor"><span></span><em class="sr-only">Ativar cursor ampliado</em></label></div>
+          <div class="setting-row"><span><strong>Escala de cinza</strong><small>Reduz o uso de cores na interface, mantendo textos e formas visíveis.</small></span><label class="switch"><input type="checkbox" name="grayscale" data-a11y-pref="grayscale"><span></span><em class="sr-only">Ativar escala de cinza</em></label></div>
+          <div class="form-actions"><button class="btn btn-outline" id="resetPreferences" type="button">Restaurar padrão</button><button class="btn btn-primary" type="submit">Salvar preferências <span aria-hidden="true">✓</span></button></div>
+          <p class="form-footnote" id="preferencesStatus" role="status" aria-live="polite">Suas preferências estão prontas para personalizar o catálogo.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- PEDIDOS -->
+    <section class="view" id="view-orders" data-view-panel="orders" hidden>
+      <div class="page-heading"><span class="eyebrow"><span class="eyebrow-line"></span> DA COZINHA ATÉ VOCÊ</span><h1>Meus pedidos</h1><p>Acompanhe o andamento, reveja os detalhes ou consulte pedidos anteriores.</p></div>
+      <div class="order-toolbar"><div class="segmented" role="group" aria-label="Filtrar pedidos"><button class="selected" type="button" data-order-filter="all" aria-pressed="true">Todos</button><button type="button" data-order-filter="active" aria-pressed="false">Em andamento</button><button type="button" data-order-filter="completed" aria-pressed="false">Finalizados</button><button type="button" data-order-filter="cancelled" aria-pressed="false">Cancelados</button></div><button class="btn btn-outline" type="button" data-view="home">+ Novo pedido</button></div>
+      <div id="ordersList" class="orders-list"></div>
+    </section>
+
+    <!-- PERFIL -->
+    <section class="view" id="view-profile" data-view-panel="profile" hidden>
+      <div class="page-heading"><span class="eyebrow"><span class="eyebrow-line"></span> SEUS DADOS</span><h1>Cadastro e perfil</h1><p>Dados para personalizar sua experiência de compra. Este formulário é local e demonstrativo.</p></div>
+      <form id="profileForm" class="panel profile-form">
+        <div class="panel-heading"><div><h2>Dados do cliente</h2><p>Preencha somente os campos que forem necessários para a demonstração.</p></div></div>
+        <div class="form-two"><div class="field"><label for="profileName">Nome completo</label><input id="profileName" name="name" autocomplete="name" required placeholder="Como podemos chamar você?"></div><div class="field"><label for="profileEmail">E-mail</label><input id="profileEmail" name="email" type="email" autocomplete="email" placeholder="voce@exemplo.com"></div></div>
+        <div class="form-two"><div class="field"><label for="profilePhone">Telefone</label><input id="profilePhone" name="phone" type="tel" autocomplete="tel" placeholder="(00) 00000-0000"></div><div class="field"><label for="profileCpf">CPF (opcional)</label><input id="profileCpf" name="cpf" inputmode="numeric" placeholder="000.000.000-00"></div></div>
+        <div class="field"><label for="profileRg">RG (opcional)</label><input id="profileRg" name="rg" placeholder="Documento de identidade"></div>
+        <div class="field"><label for="profileAddress">Endereço de entrega padrão</label><input id="profileAddress" name="address" autocomplete="street-address" placeholder="Rua, número, bairro, cidade"></div>
+        <div class="form-actions"><button class="btn btn-primary" type="submit">Salvar cadastro</button></div>
+        <p class="form-footnote">Não informe senhas, dados bancários ou números completos de cartão neste protótipo. Os dados ficam no armazenamento local deste navegador.</p>
+      </form>
+    </section>
+
+    <!-- ÁREA DO VENDEDOR -->
+    <section class="view" id="view-seller" data-view-panel="seller" hidden>
+      <div class="seller-page-head"><div><span class="eyebrow"><span class="eyebrow-line"></span> SEU NEGÓCIO EM UM SÓ LUGAR</span><h1>Área do vendedor</h1><p>Organize a loja, os produtos e acompanhe os pedidos do seu negócio.</p></div><button class="btn btn-primary" type="button" id="newProductTop">+ Novo produto</button></div>
+      <div class="seller-workspace">
+        <aside class="seller-sidebar">
+          <div class="seller-profile"><div class="seller-avatar" id="sellerAvatar">TC</div><div><strong id="sellerStoreName">Tempero da Casa</strong><small id="sellerStoreMeta">Loja de demonstração</small></div></div>
+          <nav aria-label="Menu do vendedor" class="seller-tabs">
+            <button type="button" data-seller-tab="overview" class="selected" aria-current="page"><span>▦</span> Visão geral</button>
+            <button type="button" data-seller-tab="store"><span>⌂</span> Minha loja</button>
+            <button type="button" data-seller-tab="products"><span>☷</span> Produtos <b id="sellerProductCount">0</b></button>
+            <button type="button" data-seller-tab="sales"><span>↗</span> Vendas e pedidos</button>
+            <button type="button" data-seller-tab="reports"><span>▤</span> Relatórios</button>
+          </nav>
+          <div class="sidebar-help"><span aria-hidden="true">?</span><strong>Precisa de ajuda?</strong><small>Organize seus produtos e acompanhe seu desempenho por aqui.</small></div>
+        </aside>
+        <div class="seller-content">
+          <section class="seller-tab-panel" data-seller-panel="overview">
+            <div class="seller-content-heading"><div><h2>Visão geral</h2><p>Resumo do desempenho no protótipo local.</p></div><span class="date-pill" id="sellerToday"></span></div>
+            <div class="stats-grid">
+              <article class="stat-card"><span>Vendas registradas</span><strong id="statSales">R$ 0,00</strong><small>Pedidos não cancelados</small><span class="stat-icon red">↗</span></article>
+              <article class="stat-card"><span>Pedidos recebidos</span><strong id="statOrders">0</strong><small>Todos os pedidos</small><span class="stat-icon sand">▣</span></article>
+              <article class="stat-card"><span>Produtos ativos</span><strong id="statProducts">0</strong><small>Itens publicados na loja</small><span class="stat-icon green">☷</span></article>
+              <article class="stat-card"><span>Ticket médio</span><strong id="statTicket">R$ 0,00</strong><small>Por pedido não cancelado</small><span class="stat-icon blue">◉</span></article>
+            </div>
+            <div class="panel seller-table-panel"><div class="panel-heading"><div><h3>Pedidos recentes</h3><p>Atualizados conforme as compras deste protótipo.</p></div><button class="text-link" type="button" data-seller-tab="sales">Ver todas →</button></div><div class="table-wrap"><table><thead><tr><th>Pedido</th><th>Cliente</th><th>Data</th><th>Valor</th><th>Status</th></tr></thead><tbody id="recentSalesTable"></tbody></table></div></div>
+            <div class="seller-shortcuts"><button type="button" data-seller-tab="products"><span>＋</span><strong>Cadastrar produto</strong><small>Nome, descrição, preço e características</small><b aria-hidden="true">→</b></button><button type="button" data-seller-tab="store"><span>⌂</span><strong>Editar loja</strong><small>Nome, endereço, cores e informações</small><b aria-hidden="true">→</b></button><button type="button" data-seller-tab="reports"><span>▤</span><strong>Ver relatórios</strong><small>Consulte vendas por data e cliente</small><b aria-hidden="true">→</b></button></div>
+          </section>
+
+          <section class="seller-tab-panel" data-seller-panel="store" hidden>
+            <div class="seller-content-heading"><div><h2>Minha loja</h2><p>Cadastre ou atualize os dados do seu comércio.</p></div></div>
+            <form id="storeForm" class="panel seller-form">
+              <div class="panel-heading"><div><h3>Informações da loja</h3><p>Campos marcados com * são obrigatórios.</p></div></div>
+              <div class="form-two"><div class="field"><label for="storeName">Nome da loja *</label><input id="storeName" name="name" required maxlength="70" placeholder="Ex.: Tempero da Casa"></div><div class="field"><label for="storeCategory">Categoria principal *</label><select id="storeCategory" name="category" required><option>Brasileira</option><option>Hambúrgueres</option><option>Pizzas</option><option>Vegetariana</option><option>Doces</option><option>Saudável</option><option>Outros</option></select></div></div>
+              <div class="field"><label for="storeAddress">Endereço da loja *</label><input id="storeAddress" name="address" required placeholder="Rua, número, bairro, cidade"></div>
+              <div class="form-two"><div class="field"><label for="ownerName">Nome do responsável *</label><input id="ownerName" name="owner" required placeholder="Nome do proprietário"></div><div class="field"><label for="ownerPhone">Telefone para contato</label><input id="ownerPhone" name="phone" type="tel" placeholder="(00) 00000-0000"></div></div>
+              <div class="form-two"><div class="field"><label for="ownerEmail">E-mail comercial</label><input id="ownerEmail" name="email" type="email" placeholder="loja@exemplo.com"></div><div class="field"><label for="ownerCnpj">CNPJ (opcional)</label><input id="ownerCnpj" name="cnpj" placeholder="00.000.000/0000-00"></div></div>
+              <div class="form-two"><div class="field"><label for="ownerCpf">CPF do responsável (opcional)</label><input id="ownerCpf" name="ownerCpf" inputmode="numeric" placeholder="000.000.000-00"></div><div class="field"><label for="ownerRg">RG do responsável (opcional)</label><input id="ownerRg" name="ownerRg" placeholder="Documento de identidade"></div></div>
+              <div class="form-two"><div class="field"><label for="storeColor">Cor principal da loja</label><input id="storeColor" name="color" type="color" value="#c64032" class="color-input"></div><div class="field"><label for="storeLogoText">Sigla / identificação</label><input id="storeLogoText" name="logoText" maxlength="3" placeholder="Ex.: TC"></div></div>
+              <div class="form-actions"><button class="btn btn-primary" type="submit">Salvar dados da loja <span aria-hidden="true">✓</span></button></div>
+              <p class="form-footnote">Os dados são armazenados localmente neste navegador, sem publicação pública.</p>
+            </form>
+          </section>
+
+          <section class="seller-tab-panel" data-seller-panel="products" hidden>
+            <div class="seller-content-heading"><div><h2>Produtos</h2><p>Gerencie o cardápio, preços e informações alimentares.</p></div><button class="btn btn-primary" type="button" id="newProductButton">+ Novo produto</button></div>
+            <div class="product-admin-toolbar"><label class="search-box"><span aria-hidden="true">⌕</span><span class="sr-only">Buscar produto no painel</span><input id="sellerProductSearch" type="search" placeholder="Buscar produto..."></label><select id="sellerProductStatus" aria-label="Filtrar status de produto"><option value="all">Todos os status</option><option value="active">Ativos</option><option value="inactive">Inativos</option></select></div>
+            <div id="sellerProductsList" class="seller-product-list"></div>
+          </section>
+
+          <section class="seller-tab-panel" data-seller-panel="sales" hidden>
+            <div class="seller-content-heading"><div><h2>Vendas e pedidos</h2><p>Filtre os pedidos, atualize o status e consulte os itens vendidos.</p></div><button class="btn btn-outline" id="exportSalesCsv" type="button">Exportar CSV ↓</button></div>
+            <div class="filter-panel"><div class="field"><label for="salesSearch">Cliente ou nº do pedido</label><input id="salesSearch" placeholder="Pesquisar..." type="search"></div><div class="field"><label for="salesStatus">Status</label><select id="salesStatus"><option value="all">Todos</option><option value="Recebido">Recebido</option><option value="Em preparo">Em preparo</option><option value="Saiu para entrega">Saiu para entrega</option><option value="Concluído">Concluído</option><option value="Cancelado">Cancelado</option></select></div><div class="field"><label for="salesDateFrom">De</label><input id="salesDateFrom" type="date"></div><div class="field"><label for="salesDateTo">Até</label><input id="salesDateTo" type="date"></div></div>
+            <div class="panel seller-table-panel"><div class="table-wrap"><table><thead><tr><th>Pedido</th><th>Cliente / itens</th><th>Data e horário</th><th>Pagamento</th><th>Valor</th><th>Status / ações</th></tr></thead><tbody id="salesTable"></tbody></table></div><p id="salesEmpty" class="table-empty" hidden>Nenhum pedido corresponde aos filtros.</p></div>
+          </section>
+
+          <section class="seller-tab-panel" data-seller-panel="reports" hidden>
+            <div class="seller-content-heading"><div><h2>Relatórios de vendas</h2><p>Resumos por cliente, data ou venda, com filtros por período e valor.</p></div><button class="btn btn-outline" id="exportReportCsv" type="button">Exportar relatório ↓</button></div>
+            <div class="filter-panel report-filters"><div class="field"><label for="reportFrom">Data inicial</label><input id="reportFrom" type="date"></div><div class="field"><label for="reportTo">Data final</label><input id="reportTo" type="date"></div><div class="field"><label for="reportMin">Valor mínimo (R$)</label><input id="reportMin" type="number" min="0" step=".01" placeholder="0,00"></div><div class="field"><label for="reportMax">Valor máximo (R$)</label><input id="reportMax" type="number" min="0" step=".01" placeholder="Sem limite"></div><div class="field"><label for="reportCustomer">Cliente</label><input id="reportCustomer" placeholder="Nome do cliente"></div></div>
+            <div class="segmented report-tabs" role="group" aria-label="Tipo de relatório"><button class="selected" type="button" data-report-type="sale" aria-pressed="true">Por venda</button><button type="button" data-report-type="customer" aria-pressed="false">Por cliente</button><button type="button" data-report-type="date" aria-pressed="false">Por data</button></div>
+            <div class="report-summary"><div><span>Vendas encontradas</span><strong id="reportCount">0</strong></div><div><span>Receita total</span><strong id="reportRevenue">R$ 0,00</strong></div><div><span>Ticket médio</span><strong id="reportAverage">R$ 0,00</strong></div></div>
+            <div class="panel seller-table-panel"><div class="table-wrap"><table><thead id="reportHead"></thead><tbody id="reportBody"></tbody></table></div><p id="reportEmpty" class="table-empty" hidden>Nenhum resultado no período selecionado.</p></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOWNLOADS -->
+    <section class="view" id="view-downloads" data-view-panel="downloads" hidden>
+      <div class="page-heading"><span class="eyebrow"><span class="eyebrow-line"></span> ACESSIFOOD NO DESKTOP</span><h1>Leve sua experiência para o computador.</h1><p>Baixe a versão portátil para abrir o AcessiFood no Windows, macOS ou Linux. Quando o site estiver publicado em HTTPS, também será possível instalá-lo como aplicativo pelo navegador.</p></div>
+      <div class="download-grid">
+        <article class="download-card download-card-featured"><div class="download-os windows" aria-hidden="true">↓</div><span class="download-kicker">DOWNLOAD DISPONÍVEL</span><h2>Versão portátil para computador</h2><p>Pacote ZIP com o site, imagens e atalhos de inicialização. Não precisa instalar dependências: extraia a pasta e abra o iniciador do seu sistema.</p><a class="btn btn-primary download-link" href="downloads/AcessiFood-Desktop-Portatil.zip" download="AcessiFood-Desktop-Portatil.zip">Baixar versão desktop (.ZIP) <span aria-hidden="true">↓</span></a><small>Funciona com um navegador moderno. Os dados ficam salvos localmente no navegador em que o projeto for aberto.</small></article>
+        <article class="download-card"><div class="download-os linux" aria-hidden="true">▣</div><span class="download-kicker">INSTALAÇÃO PELO NAVEGADOR</span><h2>Instalar como aplicativo</h2><p>Em um site publicado em HTTPS, navegadores compatíveis podem instalar o AcessiFood na área de trabalho e abrir em uma janela própria.</p><button id="installDesktopBtn" type="button" class="btn btn-outline" disabled>Instalação pelo navegador</button><small id="installDesktopStatus" role="status" aria-live="polite">A instalação aparecerá quando o site estiver hospedado em HTTPS e o navegador oferecer suporte. Por enquanto, use o download portátil.</small></article>
+      </div>
+      <div class="download-notice"><strong>Importante sobre esta versão</strong><p>O ZIP contém a versão web portátil, não um instalador nativo .EXE ou .DMG. Para instalar pelo navegador, publique os arquivos em um endereço HTTPS. Pagamentos, entregas e sincronização entre dispositivos continuam sendo demonstrativos.</p></div>
+      <div class="export-backup"><div><h2>Seus dados locais</h2><p>Exporte uma cópia dos produtos, preferências, perfil e pedidos armazenados neste navegador.</p></div><button id="exportBackup" type="button" class="btn btn-primary">Baixar backup JSON ↓</button><label class="btn btn-outline file-label">Restaurar backup JSON ↑<input id="importBackup" type="file" accept=".json,application/json" hidden></label></div>
+      <p class="form-footnote">O backup pode conter informações de perfil e pedidos. Guarde o arquivo em local seguro. Os dados não são sincronizados entre navegadores ou dispositivos.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-main">
+      <div><a class="brand footer-brand" href="#inicio" data-view-link="home"><span class="brand-symbol">a</span><span class="brand-word">Acessi<span>Food</span><small>COMIDA BOA PARA TODOS</small></span></a><p>Mais autonomia para quem compra.<br>Mais oportunidade para quem vende.</p></div>
+      <div class="footer-links"><strong>Explore</strong><button data-view="about" type="button">Objetivo do projeto</button><button data-view="home" type="button">Cardápio</button><button data-view="preferences" type="button">Preferências</button><button data-view="orders" type="button">Meus pedidos</button></div>
+      <div class="footer-links"><strong>Para negócios</strong><button data-view="seller" type="button">Área do vendedor</button><button data-view="downloads" type="button">Versão desktop</button><button id="footerAccess" type="button">Acessibilidade</button></div>
+      <div class="footer-note"><span aria-hidden="true">♡</span><strong>A inclusão faz parte da receita.</strong><small>Um protótipo em evolução, criado para aproximar pessoas e pequenos negócios.</small></div>
+    </div>
+    <div class="wrap footer-bottom"><span>© 2026 AcessiFood · Projeto demonstrativo</span><span>HTML · CSS · JavaScript · Armazenamento local</span></div>
+  </footer>
+
+  <!-- CART DRAWER -->
+  <div class="overlay" id="cartOverlay" hidden>
+    <button class="overlay-backdrop" data-close-cart aria-label="Fechar sacola"></button>
+    <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="drawer-head"><div><span class="eyebrow">SUA ESCOLHA</span><h2 id="cartTitle">Sua sacola <span id="cartHeadingCount">(0)</span></h2></div><button type="button" class="close-button" data-close-cart aria-label="Fechar sacola">×</button></div>
+      <div id="cartItems" class="cart-items"></div>
+      <div id="cartEmpty" class="cart-empty"><span aria-hidden="true">♧</span><h3>Sua sacola está vazia</h3><p>Explore o cardápio e adicione algo gostoso.</p><button type="button" class="btn btn-primary" data-close-cart data-view="home">Explorar cardápio</button></div>
+      <div class="cart-summary" id="cartSummary" hidden>
+        <form id="couponForm" class="coupon-form"><label for="couponCode">Cupom de desconto</label><div><input id="couponCode" placeholder="Ex.: ACESSI10" autocomplete="off"><button class="btn btn-outline" type="submit">Aplicar</button></div><small id="couponStatus" role="status"></small></form>
+        <div class="totals"><div><span>Subtotal</span><span id="cartSubtotal">R$ 0,00</span></div><div><span>Entrega (estimativa)</span><span id="cartDelivery">R$ 4,99</span></div><div id="discountRow" hidden><span>Desconto</span><span id="cartDiscount">− R$ 0,00</span></div><div class="total-final"><strong>Total estimado</strong><strong id="cartTotalPrice">R$ 0,00</strong></div></div>
+        <button type="button" class="btn btn-primary checkout-button" id="openCheckout">Continuar para entrega e pagamento <span aria-hidden="true">→</span></button>
+        <small class="privacy-hint">Pagamento demonstrativo. Nenhum valor real será cobrado.</small>
+      </div>
+    </aside>
+  </div>
+
+  <!-- CHECKOUT -->
+  <div class="modal-layer" id="checkoutModal" hidden>
+    <div class="modal-backdrop" data-close-checkout></div>
+    <section class="modal checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+      <div class="modal-head"><div><span class="eyebrow">QUASE LÁ</span><h2 id="checkoutTitle">Finalizar pedido</h2><p>Confira a entrega e selecione como gostaria de pagar.</p></div><button class="close-button" type="button" data-close-checkout aria-label="Fechar">×</button></div>
+      <form id="checkoutForm">
+        <div class="field"><label for="checkoutName">Nome para o pedido *</label><input id="checkoutName" name="customer" required autocomplete="name" placeholder="Seu nome"></div>
+        <div class="field"><label for="checkoutAddress">Endereço de entrega *</label><input id="checkoutAddress" name="address" required autocomplete="street-address" placeholder="Rua, número, bairro, cidade"></div>
+        <div class="form-two"><div class="field"><label for="deliveryDate">Data da entrega *</label><input id="deliveryDate" name="date" type="date" required></div><div class="field"><label for="deliveryTime">Horário preferido *</label><select id="deliveryTime" name="time" required><option value="">Selecione</option><option>Assim que possível</option><option>12:00–13:00</option><option>13:00–14:00</option><option>18:00–19:00</option><option>19:00–20:00</option><option>20:00–21:00</option></select></div></div>
+        <fieldset class="form-fieldset"><legend>Forma de pagamento *</legend><div class="payment-options"><label><input type="radio" name="payment" value="Pix" required checked><span><b aria-hidden="true">◇</b><strong>Pix</strong><small>Simulado</small></span></label><label><input type="radio" name="payment" value="Cartão de crédito"><span><b aria-hidden="true">▤</b><strong>Crédito</strong><small>Sem cobrança real</small></span></label><label><input type="radio" name="payment" value="Cartão de débito"><span><b aria-hidden="true">▤</b><strong>Débito</strong><small>Sem cobrança real</small></span></label><label><input type="radio" name="payment" value="Dinheiro"><span><b aria-hidden="true">＄</b><strong>Dinheiro</strong><small>Na entrega</small></span></label></div></fieldset>
+        <div class="field"><label for="checkoutNotes">Observações para o vendedor (opcional)</label><textarea id="checkoutNotes" name="notes" rows="2" placeholder="Ex.: tocar a campainha, molho separado..."></textarea></div>
+        <div class="checkout-total"><span>Total estimado</span><strong id="checkoutTotal">R$ 0,00</strong></div>
+        <p class="form-footnote">Ao continuar, será criado um pedido fictício nesta demonstração. Não será feito pagamento nem solicitação real de entrega.</p>
+        <div class="form-actions"><button type="button" class="btn btn-outline" data-close-checkout>Voltar à sacola</button><button type="submit" class="btn btn-primary">Confirmar pedido <span aria-hidden="true">✓</span></button></div>
+      </form>
+    </section>
+  </div>
+
+  <!-- PRODUCT EDITOR -->
+  <div class="modal-layer" id="productModal" hidden>
+    <div class="modal-backdrop" data-close-product></div>
+    <section class="modal product-modal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+      <div class="modal-head"><div><span class="eyebrow">CARDÁPIO DA LOJA</span><h2 id="productModalTitle">Cadastrar produto</h2><p>Informações claras ajudam os clientes a escolher.</p></div><button class="close-button" type="button" data-close-product aria-label="Fechar">×</button></div>
+      <form id="productForm">
+        <input type="hidden" name="id" id="productId">
+        <div class="field"><label for="productName">Nome do produto *</label><input id="productName" name="name" required maxlength="80" placeholder="Ex.: Bowl colorido"></div>
+        <div class="form-two"><div class="field"><label for="productPrice">Preço (R$) *</label><input id="productPrice" name="price" type="number" min=".01" step=".01" required placeholder="29,90"></div><div class="field"><label for="productCategory">Categoria *</label><select id="productCategory" name="category" required><option>Brasileira</option><option>Hambúrgueres</option><option>Pizzas</option><option>Vegetariana</option><option>Doces</option><option>Saudável</option><option>Outros</option></select></div></div>
+        <div class="field"><label for="productDescription">Descrição *</label><textarea id="productDescription" name="description" rows="3" required maxlength="240" placeholder="Ingredientes e características do prato"></textarea></div>
+        <div class="form-two"><div class="field"><label for="productImage">Imagem ilustrativa</label><select id="productImage" name="image"><option value="food-table.jpg">Prato saudável / vegetais</option><option value="burger.jpg">Hambúrguer</option><option value="pizza.jpg">Pizza</option><option value="brazilian.jpg">Comida brasileira</option></select></div><div class="field"><label for="productStock">Estoque disponível *</label><input id="productStock" name="stock" type="number" min="0" step="1" required value="10"></div></div>
+        <fieldset class="form-fieldset"><legend>Características alimentares</legend><div class="check-grid compact-checks">
+          <label class="check-card"><input type="checkbox" name="vegetarian"><span class="check-custom"></span><span><strong>Vegetariano</strong></span></label>
+          <label class="check-card"><input type="checkbox" name="vegan"><span class="check-custom"></span><span><strong>Vegano</strong></span></label>
+          <label class="check-card"><input type="checkbox" name="glutenFree"><span class="check-custom"></span><span><strong>Sem glúten</strong></span></label>
+          <label class="check-card"><input type="checkbox" name="lactoseFree"><span class="check-custom"></span><span><strong>Sem lactose</strong></span></label>
+          <label class="check-card"><input type="checkbox" name="sweet"><span class="check-custom"></span><span><strong>Doce</strong></span></label>
+          <label class="check-card"><input type="checkbox" name="hotMeal"><span class="check-custom"></span><span><strong>Prato quente</strong></span></label>
+        </div></fieldset>
+        <div class="field"><label for="productOffer">Desconto promocional (%)</label><input id="productOffer" name="offer" type="number" min="0" max="90" step="1" value="0"><small>Opcional. O desconto aparece no cardápio e no preço do produto.</small></div>
+        <div class="form-actions"><button type="button" class="btn btn-outline" data-close-product>Cancelar</button><button type="submit" class="btn btn-primary">Salvar produto</button></div>
+      </form>
+    </section>
+  </div>
+
+  <!-- ACCESSIBILITY QUICK PANEL -->
+  <div class="modal-layer" id="a11yModal" hidden>
+    <div class="modal-backdrop" data-close-a11y></div>
+    <section class="modal a11y-modal" role="dialog" aria-modal="true" aria-labelledby="a11yTitle">
+      <div class="modal-head"><div><span class="eyebrow">INCLUSÃO EM PRIMEIRO LUGAR</span><h2 id="a11yTitle">Ajustes de acessibilidade</h2><p>Escolha os controles que deixam a leitura mais confortável.</p></div><button class="close-button" type="button" data-close-a11y aria-label="Fechar">×</button></div>
+      <div class="setting-row"><span><strong>Texto ampliado</strong><small>Aumenta a tipografia da interface.</small></span><label class="switch"><input type="checkbox" id="quickLarge" data-a11y-pref="largeText"><span></span><em class="sr-only">Texto ampliado</em></label></div>
+      <div class="setting-row"><span><strong>Alto contraste</strong><small>Melhora a distinção de elementos visuais.</small></span><label class="switch"><input type="checkbox" id="quickContrast" data-a11y-pref="highContrast"><span></span><em class="sr-only">Alto contraste</em></label></div>
+      <div class="setting-row"><span><strong>Fonte fácil de ler</strong><small>Usa fonte sem serifa e espaçamento extra.</small></span><label class="switch"><input type="checkbox" id="quickFont" data-a11y-pref="readableFont"><span></span><em class="sr-only">Fonte fácil de ler</em></label></div>
+      <div class="setting-row"><span><strong>Reduzir animações</strong><small>Evita efeitos de movimento decorativos.</small></span><label class="switch"><input type="checkbox" id="quickMotion" data-a11y-pref="reducedMotion"><span></span><em class="sr-only">Reduzir animações</em></label></div>
+      <div class="setting-row"><span><strong>Maior espaçamento entre linhas</strong><small>Facilita acompanhar o texto sem perder a linha.</small></span><label class="switch"><input type="checkbox" data-a11y-pref="relaxedLines"><span></span><em class="sr-only">Maior espaçamento entre linhas</em></label></div>
+      <div class="setting-row"><span><strong>Mais espaço entre letras e palavras</strong><small>Amplia a separação visual do texto.</small></span><label class="switch"><input type="checkbox" data-a11y-pref="wideSpacing"><span></span><em class="sr-only">Mais espaço entre letras e palavras</em></label></div>
+      <div class="setting-row"><span><strong>Sublinhar links</strong><small>Deixa os links mais fáceis de reconhecer.</small></span><label class="switch"><input type="checkbox" data-a11y-pref="highlightLinks"><span></span><em class="sr-only">Sublinhar links</em></label></div>
+      <div class="setting-row"><span><strong>Realce reforçado de foco</strong><small>Destaca o controle atual na navegação por teclado.</small></span><label class="switch"><input type="checkbox" data-a11y-pref="strongFocus"><span></span><em class="sr-only">Realce reforçado de foco</em></label></div>
+      <div class="setting-row"><span><strong>Guia de leitura</strong><small>Faixa horizontal acompanha o ponteiro ou o elemento em foco.</small></span><label class="switch"><input type="checkbox" data-a11y-pref="readingGuide"><span></span><em class="sr-only">Ativar guia de leitura</em></label></div>
+      <div class="setting-row"><span><strong>Modo foco / menos distrações</strong><small>Esconde alguns elementos decorativos.</small></span><label class="switch"><input type="checkbox" data-a11y-pref="focusMode"><span></span><em class="sr-only">Ativar modo foco</em></label></div>
+      <div class="setting-row"><span><strong>Reduzir saturação das imagens</strong><small>Reduz cores fortes em fotografias e ilustrações.</small></span><label class="switch"><input type="checkbox" data-a11y-pref="lowSaturation"><span></span><em class="sr-only">Reduzir saturação das imagens</em></label></div>
+      <div class="setting-row"><span><strong>Botões e áreas clicáveis maiores</strong><small>Facilita selecionar controles em telas sensíveis ao toque.</small></span><label class="switch"><input type="checkbox" data-a11y-pref="largeControls"><span></span><em class="sr-only">Ampliar botões e áreas clicáveis</em></label></div>
+      <div class="setting-row"><span><strong>Modo escuro</strong><small>Paleta escura com texto claro.</small></span><label class="switch"><input type="checkbox" data-a11y-pref="darkMode"><span></span><em class="sr-only">Ativar modo escuro</em></label></div>
+      <div class="setting-row"><span><strong>Alinhamento à esquerda</strong><small>Facilita seguir o início de cada linha.</small></span><label class="switch"><input type="checkbox" data-a11y-pref="leftAlign"><span></span><em class="sr-only">Alinhar texto à esquerda</em></label></div>
+      <div class="setting-row"><span><strong>Cursor ampliado</strong><small>Ajuda a localizar o ponteiro.</small></span><label class="switch"><input type="checkbox" data-a11y-pref="largeCursor"><span></span><em class="sr-only">Ativar cursor ampliado</em></label></div>
+      <div class="setting-row"><span><strong>Escala de cinza</strong><small>Reduz os estímulos de cor na página.</small></span><label class="switch"><input type="checkbox" data-a11y-pref="grayscale"><span></span><em class="sr-only">Ativar escala de cinza</em></label></div>
+      <div class="a11y-shortcuts"><button class="btn btn-outline" id="speakPage" type="button">Ler resumo da página 🔊</button><button class="btn btn-outline" id="stopSpeech" type="button">Parar leitura ■</button><button class="btn btn-outline" id="resetA11y" type="button">Restaurar opções padrão</button></div>
+      <p class="form-footnote">Teclas úteis: Tab / Shift+Tab para percorrer os controles, Enter ou Espaço para ativá-los, Esc para fechar a janela e / para ir à busca. A leitura por voz depende do navegador. O guia de leitura é um apoio visual, não substitui um leitor de tela.</p>
+    </section>
+  </div>
+  <div id="readingGuide" class="reading-guide" aria-hidden="true" hidden></div>
+  <div class="sr-only" id="liveAnnouncement" aria-live="polite" role="status"></div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+</body>
+</html>
