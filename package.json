@@ -1,0 +1,17 @@
+{
+  "name": "acessifood-desktop",
+  "version": "1.0.0",
+  "description": "Painel Desktop do Dono - AcessiFood",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron src/main/main.js"
+  },
+  "devDependencies": {
+    "electron": "^41.3.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "dotenv": "^17.4.2",
+    "mysql2": "^3.23.3"
+  }
+}

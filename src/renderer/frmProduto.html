@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastrar Produto</title>
+  <link href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-4 bg-light">
+  <h4 class="mb-3 text-success">Novo Produto</h4>
+  <form id="formProduto">
+    <div class="mb-3">
+      <label class="form-label">Loja</label>
+      <select id="selectLoja" name="loja_id" class="form-select" required></select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Nome do Produto</label>
+      <input type="text" name="nome" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Preço (R$)</label>
+      <input type="number" step="0.01" name="preco" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Descrição</label>
+      <input type="text" name="descricao" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Clima Recomendado</label>
+      <select name="clima" class="form-select">
+        <option value="Todos">Todos</option>
+        <option value="Frio">Frio (Sopas, etc.)</option>
+        <option value="Calor">Calor (Sorvetes, etc.)</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label d-block">Restrições e Alérgenos (Acessibilidade):</label>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="apimentado" value="1" id="chkPimenta">
+        <label class="form-check-label" for="chkPimenta">Apimentado</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="gluten" value="1" id="chkGluten" checked>
+        <label class="form-check-label" for="chkGluten">Contém Glúten</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="lactose" value="1" id="chkLactose" checked>
+        <label class="form-check-label" for="chkLactose">Contém Lactose</label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success w-100 fw-bold mt-2">Salvar Produto</button>
+  </form>
+  <script src="js/frmProduto.js"></script>
+</body>
+</html>
