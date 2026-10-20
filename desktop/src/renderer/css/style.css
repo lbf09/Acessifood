@@ -1,0 +1,149 @@
+:root {
+  /* Tipografia Principal */
+  --af-font-main: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+
+  /* Paleta Vermelho & Branco */
+  --af-red-primary: #D32F2F;
+  --af-red-dark: #9A0007;
+  --af-red-light: #FFEBEE;
+  --af-red-accent: #E53935;
+  --af-white: #FFFFFF;
+  --af-bg-light: #F9FAFB;
+  --af-text-dark: #1E293B;
+  --af-text-muted: #64748B;
+  --af-border: #E2E8F0;
+  --af-radius: 10px;
+}
+
+/* Aplicação Global da Fonte */
+* {
+  font-family: var(--af-font-main) !important;
+}
+
+body {
+  font-family: var(--af-font-main);
+  background-color: var(--af-bg-light);
+  color: var(--af-text-dark);
+}
+
+/* Forçar herdabilidade de fonte em elementos de formulário e botões */
+input, select, textarea, button, table {
+  font-family: var(--af-font-main) !important;
+}
+
+/* Sidebar Estilizada */
+.af-sidebar {
+  background: linear-gradient(180deg, var(--af-red-primary) 0%, var(--af-red-dark) 100%);
+  width: 260px;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.af-sidebar .brand-title {
+  color: var(--af-white);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.af-sidebar .brand-badge {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--af-white);
+  font-size: 0.75rem;
+}
+
+/* Cards e Contentores */
+.af-card {
+  background-color: var(--af-white);
+  border: 1px solid var(--af-border);
+  border-radius: var(--af-radius);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.af-card-header {
+  border-bottom: 2px solid var(--af-red-light);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Botões do Tema */
+.btn-af-primary {
+  background-color: var(--af-red-primary);
+  color: var(--af-white);
+  border: none;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.55rem 1.2rem;
+  transition: all 0.2s ease;
+}
+
+.btn-af-primary:hover {
+  background-color: var(--af-red-dark);
+  color: var(--af-white);
+  transform: translateY(-1px);
+}
+
+.btn-af-outline {
+  border: 1.5px solid var(--af-red-primary);
+  color: var(--af-red-primary);
+  background-color: transparent;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-af-outline:hover {
+  background-color: var(--af-red-light);
+  color: var(--af-red-dark);
+}
+
+/* Tabelas */
+.af-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.af-table th {
+  background-color: var(--af-red-light);
+  color: var(--af-red-dark);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  padding: 0.85rem 1rem;
+  border-bottom: 2px solid var(--af-red-primary);
+}
+
+.af-table td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--af-border);
+  vertical-align: middle;
+}
+
+.af-table tbody tr:hover {
+  background-color: rgba(211, 47, 47, 0.02);
+}
+
+/* Badges e Rotulagem */
+.badge-af-red {
+  background-color: var(--af-red-light);
+  color: var(--af-red-dark);
+  font-weight: 600;
+}
+
+/* Barra de Scroll Customizada */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--af-bg-light);
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--af-red-primary);
+}

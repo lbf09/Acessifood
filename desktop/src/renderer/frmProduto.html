@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastrar Produto</title>
+  <link href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="p-4 bg-white">
+  <div class="border-bottom pb-2 mb-3">
+    <h4 class="fw-bold text-danger m-0">Novo Produto</h4>
+    <small class="text-muted">Informe os detalhes e alérgenos para o cardápio</small>
+  </div>
+
+  <form id="formProduto">
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Loja Pertencente</label>
+      <select id="selectLoja" name="loja_id" class="form-select" required></select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Nome do Prato / Item</label>
+      <input type="text" name="nome" class="form-control" required placeholder="Ex: Sopa de Cordeiro">
+    </div>
+    <div class="row mb-3">
+      <div class="col-6">
+        <label class="form-label fw-semibold">Preço (R$)</label>
+        <input type="number" step="0.01" name="preco" class="form-control" required placeholder="0.00">
+      </div>
+      <div class="col-6">
+        <label class="form-label fw-semibold">Clima Recomendado</label>
+        <select name="clima" class="form-select">
+          <option value="Todos">Todos</option>
+          <option value="Frio">Frio</option>
+          <option value="Calor">Calor</option>
+        </select>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Descrição Curta</label>
+      <input type="text" name="descricao" class="form-control" placeholder="Ex: Acompanha torradas e pimenta da casa">
+    </div>
+    
+    <div class="mb-4 p-3 bg-light rounded border">
+      <label class="form-label fw-bold text-danger d-block mb-2">Restrições Acessíveis</label>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="apimentado" value="1" id="chkPimenta">
+        <label class="form-check-label" for="chkPimenta">Apimentado</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="gluten" value="1" id="chkGluten" checked>
+        <label class="form-check-label" for="chkGluten">Contém Glúten</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="lactose" value="1" id="chkLactose" checked>
+        <label class="form-check-label" for="chkLactose">Contém Lactose</label>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-af-primary w-100 py-2">Salvar Produto</button>
+  </form>
+  <script src="js/frmProduto.js"></script>
+</body>
+</html>

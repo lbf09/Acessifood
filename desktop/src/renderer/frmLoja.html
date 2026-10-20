@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastrar Loja</title>
+  <link href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="p-4 bg-white">
+  <div class="border-bottom pb-2 mb-3">
+    <h4 class="fw-bold text-danger m-0">Nova Loja</h4>
+    <small class="text-muted">Cadastre os dados do estabelecimento</small>
+  </div>
+
+  <form id="formLoja">
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Nome da Loja</label>
+      <input type="text" name="nome" class="form-control" required placeholder="Ex: Cantina da Maria">
+    </div>
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Nome do Dono / Responsável</label>
+      <input type="text" name="dono_nome" class="form-control" required placeholder="Ex: Maria Silva">
+    </div>
+    <div class="mb-3">
+      <label class="form-label fw-semibold">CNPJ</label>
+      <input type="text" name="cnpj" class="form-control" placeholder="00.000.000/0001-00">
+    </div>
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Endereço Completo</label>
+      <input type="text" name="endereco" class="form-control" required placeholder="Rua, Número, Bairro">
+    </div>
+    <div class="mb-4">
+      <label class="form-label fw-semibold">Paleta Visual de Preferência</label>
+      <select name="paleta_cores" class="form-select">
+        <option value="Vermelho Padrão">Vermelho Padrão</option>
+        <option value="Alto Contraste">Alto Contraste (Preto e Amarelo)</option>
+        <option value="Suave">Tons Suaves / Pastéis</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-af-primary w-100 py-2">Salvar Loja</button>
+  </form>
+  <script src="js/frmLoja.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>AcessiFood - Painel de Gestão</title>
+  <link href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="overflow-hidden">
+
+  <div class="container-fluid vh-100 d-flex p-0">
+    <!-- Sidebar em Vermelho -->
+    <aside class="af-sidebar text-white p-4 d-flex flex-column z-2">
+      <div class="d-flex align-items-center gap-2 mb-3">
+        <h3 class="brand-title m-0">AcessiFood</h3>
+      </div>
+      <span class="badge brand-badge mb-4 align-self-start">Painel do Restaurante</span>
+      <hr class="border-white opacity-25">
+      <p class="small text-white-50">Gerencie suas lojas e cardápios acessíveis em um único local.</p>
+    </aside>
+
+    <!-- Área de Conteúdo Principal -->
+    <div class="flex-grow-1 d-flex flex-column bg-light">
+      <header class="bg-white border-bottom px-4 py-3 d-flex justify-content-between align-items-center shadow-sm">
+        <h4 class="m-0 fw-bold text-dark">Visão Geral</h4>
+        <span class="badge bg-danger p-2">Sistema Ativo</span>
+      </header>
+
+      <main class="flex-grow-1 overflow-auto p-4">
+        
+        <!-- Seção de Lojas -->
+        <div class="af-card">
+          <div class="af-card-header d-flex justify-content-between align-items-center">
+            <h5 class="m-0 fw-bold text-danger">Lojas Cadastradas</h5>
+          </div>
+          <div class="table-responsive">
+            <table class="af-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nome da Loja</th>
+                  <th>Responsável</th>
+                  <th>CNPJ</th>
+                  <th>Endereço</th>
+                  <th class="text-end">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyLojas"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Seção de Produtos -->
+        <div class="af-card">
+          <div class="af-card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <h5 class="m-0 fw-bold text-danger">Cardápio & Produtos</h5>
+            <div class="d-flex gap-2">
+              <button class="btn btn-af-outline btn-sm" id="btnExportarRelatorio">Relatório TXT</button>
+              <button class="btn btn-af-outline btn-sm" id="btnExportarBackup">Exportar Backup</button>
+              <button class="btn btn-af-primary btn-sm" id="btnImportarBackup">Importar Backup</button>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="af-table">
+              <thead>
+                <tr>
+                  <th>Loja</th>
+                  <th>Produto</th>
+                  <th>Preço</th>
+                  <th>Clima</th>
+                  <th>Glúten</th>
+                  <th>Lactose</th>
+                  <th class="text-end">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyProdutos"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/frmPrincipal.js"></script>
+</body>
+</html>
