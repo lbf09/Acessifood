@@ -1,0 +1,11 @@
+ACESSIFOOD DESKTOP — SUPABASE
+
+1. No Supabase SQL Editor, execute schema.sql.
+2. Copie .env.example para .env.
+3. Preencha SUPABASE_URL e SUPABASE_ANON_KEY com a URL e a chave pública do mesmo projeto utilizado em supabase-config.js no site.
+4. Execute npm install.
+5. Execute npm start.
+
+O Desktop e o site acessam o mesmo projeto Supabase. A tabela acessifood_state armazena o estado compartilhado; loja e produto armazenam cadastros relacionais.
+
+IMPORTANTE: o schema.sql é destinado a protótipo escolar e cria políticas RLS de demonstração sem login. Não use dados pessoais reais até implementar Supabase Auth e policies restritivas. Não use ou exponha chave secret/service_role.

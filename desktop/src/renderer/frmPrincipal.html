@@ -1,88 +1,89 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>AcessiFood - Painel de Gestão</title>
-  <link href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AcessiFood — Painel de gestão</title>
   <link href="css/style.css" rel="stylesheet">
 </head>
-<body class="overflow-hidden">
-
-  <div class="container-fluid vh-100 d-flex p-0">
-    <!-- Sidebar em Vermelho -->
-    <aside class="af-sidebar text-white p-4 d-flex flex-column z-2">
-      <div class="d-flex align-items-center gap-2 mb-3">
-        <h3 class="brand-title m-0">AcessiFood</h3>
-      </div>
-      <span class="badge brand-badge mb-4 align-self-start">Painel do Restaurante</span>
-      <hr class="border-white opacity-25">
-      <p class="small text-white-50">Gerencie suas lojas e cardápios acessíveis em um único local.</p>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#painel" aria-label="AcessiFood, painel principal"><img class="brand-logo-horizontal" src="../../../assets/icon-512.png" alt="AcessiFood — painel do vendedor"></a>
+      <div class="sidebar-label">GESTÃO</div>
+      <nav class="side-nav" aria-label="Navegação do painel">
+        <button class="nav-item active" data-screen="dashboard"><span class="nav-icon">▦</span>Visão geral</button>
+        <button class="nav-item" data-screen="sales"><span class="nav-icon">↗</span>Vendas e pedidos</button>
+        <button class="nav-item" data-screen="products"><span class="nav-icon">☷</span>Produtos e cardápio</button>
+        <button class="nav-item" data-screen="stores"><span class="nav-icon">⌂</span>Lojas cadastradas</button>
+        <button class="nav-item" data-screen="reports"><span class="nav-icon">▤</span>Relatórios</button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-help"><span class="help-icon">?</span><div><strong>Dados compartilhados</strong><p>Site e Desktop usam a mesma tabela do Supabase.</p></div></div>
+      <div class="sidebar-actions"><button class="btn btn-light" id="btnNewProduct">＋ Novo produto</button><button class="btn btn-quiet" id="btnNewStore">＋ Nova loja</button></div>
+      <div class="sidebar-footer">AcessiFood · Projeto demonstrativo</div>
     </aside>
 
-    <!-- Área de Conteúdo Principal -->
-    <div class="flex-grow-1 d-flex flex-column bg-light">
-      <header class="bg-white border-bottom px-4 py-3 d-flex justify-content-between align-items-center shadow-sm">
-        <h4 class="m-0 fw-bold text-dark">Visão Geral</h4>
-        <span class="badge bg-danger p-2">Sistema Ativo</span>
+    <div class="main-column">
+      <header class="topbar">
+        <div><div class="breadcrumb">AcessiFood <span>/</span> <strong id="pageBreadcrumb">Visão geral</strong></div><h1 id="pageTitle">Painel de vendas</h1></div>
+        <div class="topbar-actions"><span id="dbStatus" class="connection-status pending"><i></i> Verificando Supabase</span><button class="icon-button" id="btnRefresh" title="Atualizar dados" aria-label="Atualizar dados">↻</button><div class="profile-chip"><span class="profile-avatar" id="profileAvatar">AF</span><span><strong id="profileName">Minha loja</strong><small id="profileStore">Resumo do negócio</small></span></div></div>
       </header>
 
-      <main class="flex-grow-1 overflow-auto p-4">
-        
-        <!-- Seção de Lojas -->
-        <div class="af-card">
-          <div class="af-card-header d-flex justify-content-between align-items-center">
-            <h5 class="m-0 fw-bold text-danger">Lojas Cadastradas</h5>
+      <main class="content">
+        <section class="screen" id="screen-dashboard">
+          <div class="page-intro"><div><p class="eyebrow">RESUMO DO NEGÓCIO</p><h2>Olá! Veja como está sua loja.</h2><p>Indicadores, pedidos recentes e sugestões para ajudar na gestão.</p></div><label class="period-picker">Período <select id="dashboardPeriod"><option value="7">Últimos 7 dias</option><option value="30">Últimos 30 dias</option><option value="90">Últimos 90 dias</option><option value="all">Todo o período</option></select></label></div>
+          <div class="stats-grid">
+            <article class="metric-card"><div class="metric-heading"><span>Vendas totais</span><span class="metric-symbol blue">R$</span></div><strong id="statRevenue">R$ 0,00</strong><small id="statRevenueNote">Pedidos não cancelados</small><div class="metric-foot"><span class="metric-trend">↗</span> Receita no período selecionado</div></article>
+            <article class="metric-card"><div class="metric-heading"><span>Pedidos recebidos</span><span class="metric-symbol gold">▣</span></div><strong id="statOrders">0</strong><small>Pedidos no período</small><div class="metric-foot"><span class="metric-trend blue-text">↗</span> Inclui todos os status</div></article>
+            <article class="metric-card"><div class="metric-heading"><span>Ticket médio</span><span class="metric-symbol green">◉</span></div><strong id="statTicket">R$ 0,00</strong><small>Por pedido não cancelado</small><div class="metric-foot"><span class="metric-trend green-text">✓</span> Valor médio por compra</div></article>
+            <article class="metric-card"><div class="metric-heading"><span>Produtos ativos</span><span class="metric-symbol lavender">☷</span></div><strong id="statProducts">0</strong><small id="statProductsNote">Itens publicados</small><div class="metric-foot"><span class="metric-trend blue-text">→</span> Catálogo disponível</div></article>
           </div>
-          <div class="table-responsive">
-            <table class="af-table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Nome da Loja</th>
-                  <th>Responsável</th>
-                  <th>CNPJ</th>
-                  <th>Endereço</th>
-                  <th class="text-end">Ações</th>
-                </tr>
-              </thead>
-              <tbody id="tbodyLojas"></tbody>
-            </table>
-          </div>
-        </div>
 
-        <!-- Seção de Produtos -->
-        <div class="af-card">
-          <div class="af-card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
-            <h5 class="m-0 fw-bold text-danger">Cardápio & Produtos</h5>
-            <div class="d-flex gap-2">
-              <button class="btn btn-af-outline btn-sm" id="btnExportarRelatorio">Relatório TXT</button>
-              <button class="btn btn-af-outline btn-sm" id="btnExportarBackup">Exportar Backup</button>
-              <button class="btn btn-af-primary btn-sm" id="btnImportarBackup">Importar Backup</button>
-            </div>
+          <div class="dashboard-grid">
+            <section class="panel chart-panel"><div class="panel-heading"><div><h3>Desempenho de vendas</h3><p>Receita por dia para o período selecionado</p></div><span class="legend"><i></i> Receita (R$)</span></div><div id="revenueChart" class="chart-container" role="img" aria-label="Gráfico de receita ao longo do tempo"></div><div class="chart-footer"><span id="chartPeriodLabel">Últimos 7 dias</span><strong id="chartPeriodRevenue">R$ 0,00</strong></div></section>
+            <section class="panel status-panel"><div class="panel-heading"><div><h3>Status dos pedidos</h3><p>Distribuição no período selecionado</p></div></div><div id="statusBreakdown" class="status-breakdown"></div><div class="status-panel-footer"><span>Pedidos no período</span><strong id="statusOrderTotal">0</strong></div></section>
           </div>
-          <div class="table-responsive">
-            <table class="af-table">
-              <thead>
-                <tr>
-                  <th>Loja</th>
-                  <th>Produto</th>
-                  <th>Preço</th>
-                  <th>Clima</th>
-                  <th>Glúten</th>
-                  <th>Lactose</th>
-                  <th class="text-end">Ações</th>
-                </tr>
-              </thead>
-              <tbody id="tbodyProdutos"></tbody>
-            </table>
-          </div>
-        </div>
 
+          <div class="bottom-grid">
+            <section class="panel"><div class="panel-heading"><div><h3>Produtos em destaque</h3><p>Itens com maior quantidade vendida</p></div><button class="text-button" data-go="products">Ver cardápio →</button></div><div id="topProducts" class="top-products"></div></section>
+            <section class="panel suggestions-panel"><div class="panel-heading"><div><h3>Sugestões para sua loja</h3><p>Orientações com base nos dados disponíveis</p></div><span class="sparkle">✦</span></div><div id="smartSuggestions" class="suggestion-list"></div></section>
+          </div>
+
+          <section class="panel table-panel"><div class="panel-heading"><div><h3>Vendas recentes</h3><p>Os últimos pedidos da loja</p></div><button class="text-button" data-go="sales">Ver todas as vendas →</button></div><div class="table-wrap"><table><thead><tr><th>Pedido</th><th>Cliente</th><th>Data</th><th>Itens</th><th>Valor</th><th>Status</th></tr></thead><tbody id="recentSalesTable"></tbody></table></div></section>
+        </section>
+
+        <section class="screen" id="screen-sales" hidden>
+          <div class="page-intro"><div><p class="eyebrow">ACOMPANHAMENTO</p><h2>Vendas e pedidos</h2><p>Consulte compras e atualize o andamento do pedido.</p></div><button id="btnExportSales" class="btn btn-outline">Exportar CSV ↓</button></div>
+          <div class="filter-toolbar"><label class="search-field"><span>⌕</span><input type="search" id="salesSearch" placeholder="Buscar por pedido, cliente ou produto" aria-label="Buscar pedidos"></label><label>Período<select id="salesPeriod"><option value="all">Todo o período</option><option value="7">7 dias</option><option value="30">30 dias</option><option value="90">90 dias</option></select></label><label>Status<select id="salesStatus"><option value="all">Todos</option><option>Recebido</option><option>Em preparo</option><option>Saiu para entrega</option><option>Concluído</option><option>Cancelado</option></select></label></div>
+          <section class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>Pedido</th><th>Cliente e itens</th><th>Data</th><th>Pagamento</th><th>Valor da loja</th><th>Atualizar status</th></tr></thead><tbody id="salesTable"></tbody></table></div><p id="salesEmpty" class="empty-message" hidden>Nenhum pedido corresponde aos filtros.</p></section>
+        </section>
+
+        <section class="screen" id="screen-products" hidden>
+          <div class="page-intro"><div><p class="eyebrow">CARDÁPIO</p><h2>Produtos e cardápio</h2><p>Os produtos desta lista são lidos do estado compartilhado entre site e Desktop.</p></div><button class="btn btn-primary" id="btnNewProductInline">＋ Novo produto</button></div>
+          <div class="filter-toolbar"><label class="search-field"><span>⌕</span><input type="search" id="productSearch" placeholder="Buscar produto ou categoria" aria-label="Buscar produtos"></label><label>Status<select id="productStatus"><option value="all">Todos</option><option value="active">Ativos</option><option value="inactive">Pausados</option></select></label></div>
+          <section class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>Produto</th><th>Loja</th><th>Categoria</th><th>Preço</th><th>Estoque</th><th>Status</th><th>Ações</th></tr></thead><tbody id="productsTable"></tbody></table></div><p id="productsEmpty" class="empty-message" hidden>Nenhum produto encontrado.</p></section>
+        </section>
+
+        <section class="screen" id="screen-stores" hidden>
+          <div class="page-intro"><div><p class="eyebrow">ESTABELECIMENTOS</p><h2>Lojas cadastradas</h2><p>Gerencie as lojas da base SQL e veja a loja ativa compartilhada com o site.</p></div><button class="btn btn-primary" id="btnNewStoreInline">＋ Nova loja</button></div>
+          <section class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>ID</th><th>Nome da loja</th><th>Responsável</th><th>CNPJ</th><th>Endereço</th><th>Ações</th></tr></thead><tbody id="tbodyLojas"></tbody></table></div><p id="storesEmpty" class="empty-message" hidden>Nenhuma loja cadastrada nas tabelas de cadastro.</p></section>
+          <section class="panel shared-store-card"><div class="shared-store-icon">⌂</div><div><span class="eyebrow">ESTADO DO SITE</span><h3 id="sharedStoreName">Loja ainda não configurada no site</h3><p id="sharedStoreMeta">Quando o site estiver conectado, os dados da loja ativa aparecerão aqui.</p></div><span id="sharedStoreBadge" class="tag">Estado compartilhado</span></section>
+        </section>
+
+        <section class="screen" id="screen-reports" hidden>
+          <div class="page-intro"><div><p class="eyebrow">ANÁLISE DO NEGÓCIO</p><h2>Relatórios de vendas</h2><p>Filtre o período, acompanhe os totais e exporte os resultados.</p></div><button class="btn btn-outline" id="btnExportReport">Exportar relatório CSV ↓</button></div>
+          <div class="filter-toolbar report-filter-toolbar"><label>Período<select id="reportPeriodSelect"><option value="7">Últimos 7 dias</option><option value="30" selected>Últimos 30 dias</option><option value="90">Últimos 90 dias</option><option value="all">Todo o período</option><option value="custom">Personalizado</option></select></label><label>De<input type="date" id="reportFrom"></label><label>Até<input type="date" id="reportTo"></label><button class="btn btn-primary" id="btnApplyReport">Aplicar filtros</button></div>
+          <div class="report-stats"><article class="report-stat"><span>Receita no período</span><strong id="reportRevenue">R$ 0,00</strong></article><article class="report-stat"><span>Pedidos no período</span><strong id="reportOrders">0</strong></article><article class="report-stat"><span>Ticket médio</span><strong id="reportAverage">R$ 0,00</strong></article><article class="report-stat"><span>Itens vendidos</span><strong id="reportItems">0</strong></article></div>
+          <section class="panel chart-panel"><div class="panel-heading"><div><h3>Receita ao longo do período</h3><p>Vendas não canceladas agregadas por data</p></div></div><div id="reportChart" class="chart-container large-chart" role="img" aria-label="Gráfico do relatório de vendas"></div></section>
+          <section class="panel table-panel"><div class="panel-heading"><div><h3>Detalhamento das vendas</h3><p>Resumo de pedidos e valores da loja</p></div></div><div class="table-wrap"><table><thead><tr><th>Data</th><th>Pedido</th><th>Cliente</th><th>Itens</th><th>Status</th><th>Valor</th></tr></thead><tbody id="reportTable"></tbody></table></div><p id="reportEmpty" class="empty-message" hidden>Não há vendas neste período.</p></section>
+        </section>
+
+        <footer class="app-footer"><span>© 2026 AcessiFood</span><span>Banco compartilhado: Supabase · Dados de demonstração não representam transações reais.</span></footer>
       </main>
     </div>
   </div>
-
-  <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
   <script src="js/frmPrincipal.js"></script>
 </body>
 </html>

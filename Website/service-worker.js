@@ -1,12 +1,12 @@
-const CACHE_NAME = 'acessifood-shell-v2';
+const CACHE_NAME = 'acessifood-shell-v10-accessibility-tools';
 const APP_SHELL = [
-  './', './index.html', './style.css', './app.js', './manifest.webmanifest',
+  './', './index.html', './style.css', './app.js', './supabase-config.js', './supabase-sync.js', './manifest.webmanifest',
   './assets/icon-192.png', './assets/icon-512.png',
   './assets/food-table.jpg', './assets/burger.jpg', './assets/pizza.jpg', './assets/brazilian.jpg'
 ];
 
 self.addEventListener('install', event => {
-  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)));
+  event.waitUntil(caches.open(CACHE_NAME).then(async cache => { for (const asset of APP_SHELL) { try { await cache.add(asset); } catch (error) { console.warn('Não foi possível armazenar em cache:', asset); } } }));
   self.skipWaiting();
 });
 

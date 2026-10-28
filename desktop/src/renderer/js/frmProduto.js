@@ -17,15 +17,16 @@ document.querySelector("#formProduto").addEventListener("submit", async (e) => {
     preco: Number(formData.get("preco")),
     descricao: formData.get("descricao"),
     clima: formData.get("clima"),
-    apimentado: formData.get("apimentado") ? 1 : 0,
-    gluten: formData.get("gluten") ? 1 : 0,
-    lactose: formData.get("lactose") ? 1 : 0,
+    apimentado: Boolean(formData.get("apimentado")),
+    gluten: Boolean(formData.get("gluten")),
+    lactose: Boolean(formData.get("lactose")),
   };
 
   try {
     await window.api.criarProduto(dados);
     alert("Produto cadastrado com sucesso!");
     e.target.reset();
+    if (window.api.fecharJanelaAtual) await window.api.fecharJanelaAtual();
   } catch (erro) {
     console.error("Erro ao cadastrar produto:", erro);
     alert("Não foi possível cadastrar o produto.");

@@ -1,7 +1,7 @@
 {
   "name": "acessifood-desktop",
   "version": "1.0.0",
-  "description": "Painel Desktop do Dono - AcessiFood",
+  "description": "Painel Desktop do AcessiFood integrado ao Supabase",
   "main": "src/main/main.js",
   "scripts": {
     "start": "electron src/main/main.js"
@@ -12,6 +12,6 @@
   "dependencies": {
     "bootstrap": "^5.3.8",
     "dotenv": "^17.4.2",
-    "mysql2": "^3.23.3"
+    "@supabase/supabase-js": "^2.57.4"
   }
 }

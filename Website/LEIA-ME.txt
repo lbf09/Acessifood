@@ -1,32 +1,40 @@
-ACESSIFOOD — PROTÓTIPO HTML/CSS/JAVASCRIPT
+ACESSIFOOD — SITE + DESKTOP COM SUPABASE
 
-Como executar no navegador
-1. Extraia o arquivo ZIP principal para uma pasta.
-2. Mantenha index.html, style.css, app.js, manifest.webmanifest, service-worker.js e a pasta assets juntos.
-3. Abra index.html em um navegador moderno (Chrome, Edge, Firefox ou similar).
+O projeto usa o Supabase (PostgreSQL) como fonte compartilhada de dados. O site e o aplicativo Electron usam a mesma URL de projeto e a mesma chave pública publishable/anon. Não é necessário configurar MySQL nem executar uma API Node própria.
 
-Funcionalidades implementadas
-- Catálogo com busca, filtros por categoria, ordenação por preço/nome e favoritos.
-- Sacola com quantidades, limite de estoque, remoção de itens e total estimado.
-- Cupons demonstrativos: ACESSI10 (10% a partir de R$ 30), BEMVINDO5 (5% a partir de R$ 20) e PRIMEIRA15 (15% a partir de R$ 60).
-- Checkout demonstrativo com endereço, data/horário e forma de pagamento fictícia.
-- Histórico de pedidos: status, cancelamento/restauração do estoque e opção de pedir novamente.
-- Cadastro de cliente e salvamento de preferências alimentares.
-- Página “O projeto” com objetivo, proposta, público atendido, fluxo de uso e explicação da função de cada ferramenta.
-- 16 ajustes de acessibilidade configuráveis: texto ampliado, alto contraste, fonte legível, redução de animações, espaçamento entre linhas, espaçamento entre letras/palavras, links sublinhados, foco reforçado, guia de leitura, modo foco, imagens menos saturadas, controles maiores, modo escuro, alinhamento à esquerda, cursor ampliado e escala de cinza.
-- Navegação por teclado, atalho para a busca, link para pular ao conteúdo, leitura de resumo por voz e botão para interromper a leitura.
-- Área do vendedor: cadastro da loja, CRUD de produtos, status de pedidos, filtros e relatórios por venda/cliente/data.
-- Exportação de vendas/relatórios em CSV e backup/restauração em JSON.
-- Tipografia ampliada e layout responsivo revisado para desktop, tablets e celulares, com controles maiores e melhor leitura em telas estreitas.
-- Área “Baixar Desktop” com pacote portátil ZIP para Windows/macOS/Linux e opção de instalação como PWA quando publicada em HTTPS.
-- Manifesto PWA, ícones e cache offline para a instalação via navegador em hospedagem compatível.
+PASTAS E ARQUIVOS
+- index.html, style.css e app.js: site.
+- supabase-config.js: URL e chave pública do Supabase usadas pelo navegador.
+- supabase-sync.js: leitura, gravação e atualização periódica do estado compartilhado.
+- desktop/: aplicativo Electron do vendedor.
+- desktop/schema.sql: tabelas e função PostgreSQL a executar no Supabase SQL Editor.
+- downloads/: pacotes baixáveis exibidos no site.
 
-Persistência e limitações
-- Os dados ficam no localStorage do navegador usado para abrir o protótipo; não há sincronização entre aparelhos e usuários.
-- O checkout, as formas de pagamento, os pedidos e a entrega são apenas demonstrativos; nenhuma cobrança, transação ou entrega real acontece.
-- Não há backend, autenticação, banco de dados compartilhado ou publicação real das lojas.
-- Os rótulos alimentares são informações fornecidas no protótipo e não garantem ausência de contaminação cruzada. Alergias devem ser confirmadas diretamente com o vendedor.
-- O download desktop incluído é uma versão web portátil em ZIP, não um instalador nativo .EXE/.DMG. O atalho abre o site no navegador padrão. A instalação PWA requer hospedagem em HTTPS e suporte do navegador.
-- Imagens e fontes podem depender de conexão externa (as imagens locais estão na pasta assets; a fonte remota tem alternativas locais).
+1. PREPARAR O BANCO
+1. Abra https://supabase.com/dashboard e selecione o projeto.
+2. Abra SQL Editor > New query.
+3. Abra desktop/schema.sql, copie o conteúdo para a consulta SQL e execute.
+4. Em Project Settings > API (ou Connect), copie a Project URL e a chave pública publishable/anon. Não copie a secret/service_role key.
 
-Tecnologias: HTML5, CSS3 e JavaScript puro. Sem instalação de dependências para usar a versão portátil.
+2. CONFIGURAR O SITE
+1. Abra supabase-config.js.
+2. Substitua https://SEU-PROJETO.supabase.co pela URL do projeto.
+3. Substitua SUA_CHAVE_PUBLISHABLE_OU_ANON pela chave pública do projeto.
+4. Abra a pasta do site por HTTP local (por exemplo, python -m http.server 5500) ou hospede-a em HTTPS.
+
+3. CONFIGURAR O DESKTOP
+1. Entre na pasta desktop.
+2. Copie .env.example para .env.
+3. Preencha SUPABASE_URL e SUPABASE_ANON_KEY com os mesmos valores do site.
+4. No terminal, dentro da pasta desktop, execute npm install e depois npm start.
+
+4. COMO A SINCRONIZAÇÃO FUNCIONA
+O site e o Desktop usam a tabela public.acessifood_state para sincronizar o estado da aplicação. As tabelas public.loja e public.produto guardam os cadastros relacionais de lojas e produtos. O Desktop consulta o Supabase pela API HTTPS; não precisa de conexão direta ao servidor PostgreSQL nem de senha de banco.
+
+SEGURANÇA — LEIA ANTES DE PUBLICAR
+O schema.sql deste protótipo cria policies RLS de demonstração sem login para facilitar a sincronização durante o desenvolvimento. Isso significa que qualquer pessoa com a chave pública e acesso à API pode ler ou alterar os dados dessas tabelas. Use apenas informações fictícias. Antes de usar com clientes reais, implemente Supabase Auth e policies RLS que restrinjam cada registro ao usuário autorizado. Nunca coloque uma chave secret/service_role em supabase-config.js ou desktop/.env. A chave do cliente deve ser publishable/anon.
+
+NOTAS
+- Pagamentos e entregas continuam demonstrativos.
+- O pacote Desktop contém código-fonte Electron, não um instalador nativo .EXE/.DMG.
+- Caso o site não carregue a biblioteca do Supabase, confira a conexão com a internet, pois o cliente web é carregado por CDN.

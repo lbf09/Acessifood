@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#c64032">
+  <meta name="theme-color" content="#1351b4">
   <meta name="application-name" content="AcessiFood">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -11,28 +11,28 @@
   <meta name="description" content="AcessiFood: uma plataforma de alimentação inclusiva para clientes e pequenos vendedores.">
   <title>AcessiFood — Sabor, autonomia e inclusão</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
-  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-512.png">
+  <link rel="apple-touch-icon" href="assets/icon-512.png">
   <link rel="stylesheet" href="style.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="supabase-config.js"></script>
+  <script defer src="supabase-sync.js"></script>
   <script defer src="app.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Pular para o conteúdo principal</a>
   <div class="topline">
     <div class="wrap topline-inner">
-      <span><span aria-hidden="true">♿</span> Acessibilidade não é um extra. Faz parte da experiência.</span>
+      <span><span aria-hidden="true">♿</span> AcessiFood — alimentação acessível para todos</span>
       <div class="topline-actions">
-        <button type="button" class="text-action" id="openA11yTop">Ajustes de acessibilidade <span aria-hidden="true">↗</span></button>
-        <span class="topline-dot" aria-hidden="true"></span><span>Protótipo demonstrativo</span>
+        <button type="button" class="text-action" id="openA11yTop">Acessibilidade</button>
+        <span class="topline-dot" aria-hidden="true"></span><span id="dbConnectionStatus" data-status="checking" role="status" aria-live="polite">Verificando Supabase compartilhado…</span>
       </div>
     </div>
   </div>
   <header class="header">
     <div class="wrap header-inner">
-      <a class="brand" href="#inicio" data-view-link="home" aria-label="AcessiFood — página inicial">
-        <span class="brand-symbol" aria-hidden="true">a</span>
-        <span class="brand-word">Acessi<span>Food</span><small>COMIDA BOA PARA TODOS</small></span>
-      </a>
+      <a class="brand" href="#inicio" data-view-link="home" aria-label="AcessiFood — página inicial"><img class="brand-logo-horizontal" src="assets/icon-512.png" alt="AcessiFood — comida boa para todos"></a>
       <nav class="main-nav" id="mainNav" aria-label="Navegação principal">
         <button type="button" data-view="home" class="nav-link active" aria-current="page">Explorar</button>
         <button type="button" data-view="about" class="nav-link">O projeto</button>
@@ -57,27 +57,18 @@
     <section class="view" id="view-home" data-view-panel="home">
       <div class="hero">
         <div class="hero-content">
-          <span class="eyebrow"><span class="eyebrow-line"></span> SABOR, CUIDADO E INCLUSÃO</span>
+          <span class="eyebrow">Alimentação acessível</span>
           <h1>Seu jeito de comer.<br><span>Seu jeito de escolher.</span></h1>
-          <p>Descubra pequenos negócios e refeições que respeitam suas preferências. Uma experiência pensada para dar mais autonomia a cada pessoa.</p>
+          <p>Encontre refeições de pequenos negócios, confira as informações dos produtos e ajuste a experiência às suas preferências.</p>
           <div class="hero-actions">
-            <button class="btn btn-primary" type="button" data-scroll="#catalog">Explorar cardápio <span aria-hidden="true">→</span></button>
-            <button class="btn btn-light" type="button" data-view="preferences">Personalizar experiência</button>
-            <button class="btn btn-outline" type="button" data-view="downloads">Baixar Desktop ↓</button>
+            <button class="btn btn-primary" type="button" data-scroll="#catalog">Explorar cardápio</button>
+            <button class="btn btn-outline" type="button" data-view="preferences">Ajustar acessibilidade</button>
           </div>
-          <div class="hero-benefits">
+          <div class="hero-benefits" aria-label="Recursos da plataforma">
             <span><b aria-hidden="true">✓</b> Preferências alimentares</span>
-            <span><b aria-hidden="true">✓</b> Controles acessíveis</span>
+            <span><b aria-hidden="true">✓</b> Recursos de acessibilidade</span>
             <span><b aria-hidden="true">✓</b> Pequenos negócios</span>
           </div>
-        </div>
-        <div class="hero-visual">
-          <img src="assets/food-table.jpg" alt="Mesa com variedade de alimentos frescos e coloridos">
-          <div class="hero-floating-card">
-            <span class="floating-icon" aria-hidden="true">♡</span>
-            <span><strong>Escolhas que acolhem</strong><small>Filtre pratos pelo que importa para você</small></span>
-          </div>
-          <span class="hero-stamp" aria-hidden="true">FEITO PARA<br>TODOS</span>
         </div>
       </div>
 
@@ -128,7 +119,6 @@
             <button class="btn btn-light" type="button" data-view="seller">Conhecer a área do vendedor</button>
           </div>
         </div>
-        <div class="about-hero-art"><img src="assets/food-table.jpg" alt="Mesa com diferentes alimentos representando a variedade de escolhas"><div class="about-art-caption"><span aria-hidden="true">♡</span><span><strong>Autonomia para quem compra</strong><small>Mais oportunidades para quem vende</small></span></div></div>
       </div>
 
       <div class="about-statements">
@@ -162,7 +152,7 @@
           <article><span class="tool-number">A12</span><div><h3>Escala de cinza</h3><p>Apresenta a interface sem cores, como alternativa para pessoas que preferem reduzir estímulos cromáticos. Informações importantes continuam identificadas por texto e forma.</p></div></article>
           <article><span class="tool-number">A13</span><div><h3>Leitura por voz com controle</h3><p>O resumo da seção pode ser lido em voz alta e a leitura pode ser interrompida a qualquer momento, conforme o suporte do navegador.</p></div></article>
         </div>
-        <div class="about-cta"><div><strong>Experimente as ferramentas na prática.</strong><p>As opções escolhidas ficam salvas neste navegador e podem ser restauradas a qualquer momento.</p></div><button type="button" class="btn btn-primary" data-open-a11y>Configurar acessibilidade <span aria-hidden="true">→</span></button></div>
+        <div class="about-cta"><div><strong>Experimente as ferramentas na prática.</strong><p>As opções escolhidas ficam salvas no dispositivo e, quando conectado, no banco Supabase compartilhado.</p></div><button type="button" class="btn btn-primary" data-open-a11y>Configurar acessibilidade <span aria-hidden="true">→</span></button></div>
       </section>
 
       <section class="about-section project-flow-section">
@@ -177,7 +167,7 @@
       <div class="page-heading"><span class="eyebrow"><span class="eyebrow-line"></span> DO SEU JEITO</span><h1>Suas preferências</h1><p>Personalize a experiência e use as opções alimentares como filtros do catálogo. Informe apenas o que desejar.</p></div>
       <div class="settings-layout">
         <aside class="settings-aside">
-          <div class="aside-illustration" aria-hidden="true">♡</div><h2>Você no centro das escolhas.</h2><p>As preferências salvas neste protótipo ficam apenas neste navegador. Sempre confira os ingredientes com o vendedor, especialmente em caso de alergias.</p>
+          <div class="aside-illustration" aria-hidden="true">♡</div><h2>Você no centro das escolhas.</h2><p>As preferências ficam salvas no dispositivo e, quando conectado, no banco compartilhado. Sempre confira os ingredientes com o vendedor, especialmente em caso de alergias.</p>
           <div class="safety-note"><strong>Importante</strong><span>Os rótulos são informativos e não garantem ausência de contaminação cruzada.</span></div>
         </aside>
         <form id="preferencesForm" class="panel form-panel">
@@ -191,7 +181,7 @@
           <div class="field"><label for="allergies">Alergias alimentares</label><input id="allergies" name="allergies" placeholder="Ex.: amendoim, camarão, castanhas"><small>Campo informativo. A busca não substitui a confirmação com o restaurante.</small></div>
           <div class="form-two"><div class="field"><label for="taste">Prefere</label><select id="taste" name="taste"><option value="both">Doce e salgado</option><option value="sweet">Doce</option><option value="savory">Salgado</option></select></div>
           <div class="field"><label for="temperature">Clima / temperatura</label><select id="temperature" name="temperature"><option value="any">Sem preferência</option><option value="cold">Prefiro opções quentes (ex.: sopa)</option><option value="hot">Prefiro opções refrescantes (ex.: sorvete)</option></select></div></div>
-          <div class="panel-heading subsection"><div><h2>Acessibilidade visual e de interação</h2><p>As mudanças são aplicadas imediatamente e ficam salvas neste navegador.</p></div><span class="panel-step">02</span></div>
+          <div class="panel-heading subsection"><div><h2>Acessibilidade visual e de interação</h2><p>As mudanças são aplicadas imediatamente e ficam salvas no dispositivo; com a API conectada, também são sincronizadas com o banco compartilhado.</p></div><span class="panel-step">02</span></div>
           <div class="setting-row"><span><strong>Texto ampliado</strong><small>Aumenta o tamanho dos textos e controles.</small></span><label class="switch"><input type="checkbox" name="largeText" id="prefLargeText" data-a11y-pref="largeText"><span></span><em class="sr-only">Ativar texto ampliado</em></label></div>
           <div class="setting-row"><span><strong>Alto contraste</strong><small>Reforça o contraste entre texto, fundo e controles.</small></span><label class="switch"><input type="checkbox" name="highContrast" id="prefHighContrast" data-a11y-pref="highContrast"><span></span><em class="sr-only">Ativar alto contraste</em></label></div>
           <div class="setting-row"><span><strong>Reduzir animações</strong><small>Reduz movimentos e transições decorativas.</small></span><label class="switch"><input type="checkbox" name="reducedMotion" id="prefReducedMotion" data-a11y-pref="reducedMotion"><span></span><em class="sr-only">Reduzir animações</em></label></div>
@@ -252,7 +242,7 @@
         </aside>
         <div class="seller-content">
           <section class="seller-tab-panel" data-seller-panel="overview">
-            <div class="seller-content-heading"><div><h2>Visão geral</h2><p>Resumo do desempenho no protótipo local.</p></div><span class="date-pill" id="sellerToday"></span></div>
+            <div class="seller-content-heading"><div><h2>Visão geral</h2><p>Resumo das vendas, pedidos e produtos do estado compartilhado.</p></div><span class="date-pill" id="sellerToday"></span></div>
             <div class="stats-grid">
               <article class="stat-card"><span>Vendas registradas</span><strong id="statSales">R$ 0,00</strong><small>Pedidos não cancelados</small><span class="stat-icon red">↗</span></article>
               <article class="stat-card"><span>Pedidos recebidos</span><strong id="statOrders">0</strong><small>Todos os pedidos</small><span class="stat-icon sand">▣</span></article>
@@ -272,9 +262,9 @@
               <div class="form-two"><div class="field"><label for="ownerName">Nome do responsável *</label><input id="ownerName" name="owner" required placeholder="Nome do proprietário"></div><div class="field"><label for="ownerPhone">Telefone para contato</label><input id="ownerPhone" name="phone" type="tel" placeholder="(00) 00000-0000"></div></div>
               <div class="form-two"><div class="field"><label for="ownerEmail">E-mail comercial</label><input id="ownerEmail" name="email" type="email" placeholder="loja@exemplo.com"></div><div class="field"><label for="ownerCnpj">CNPJ (opcional)</label><input id="ownerCnpj" name="cnpj" placeholder="00.000.000/0000-00"></div></div>
               <div class="form-two"><div class="field"><label for="ownerCpf">CPF do responsável (opcional)</label><input id="ownerCpf" name="ownerCpf" inputmode="numeric" placeholder="000.000.000-00"></div><div class="field"><label for="ownerRg">RG do responsável (opcional)</label><input id="ownerRg" name="ownerRg" placeholder="Documento de identidade"></div></div>
-              <div class="form-two"><div class="field"><label for="storeColor">Cor principal da loja</label><input id="storeColor" name="color" type="color" value="#c64032" class="color-input"></div><div class="field"><label for="storeLogoText">Sigla / identificação</label><input id="storeLogoText" name="logoText" maxlength="3" placeholder="Ex.: TC"></div></div>
+              <div class="form-two"><div class="field"><label for="storeColor">Cor principal da loja</label><input id="storeColor" name="color" type="color" value="#1351b4" class="color-input"></div><div class="field"><label for="storeLogoText">Sigla / identificação</label><input id="storeLogoText" name="logoText" maxlength="3" placeholder="Ex.: TC"></div></div>
               <div class="form-actions"><button class="btn btn-primary" type="submit">Salvar dados da loja <span aria-hidden="true">✓</span></button></div>
-              <p class="form-footnote">Os dados são armazenados localmente neste navegador, sem publicação pública.</p>
+              <p class="form-footnote">Com o Supabase conectado, os dados são sincronizados entre o site e o Desktop. Sem conexão, o navegador mantém uma cópia local de contingência.</p>
             </form>
           </section>
 
@@ -305,23 +295,28 @@
     <section class="view" id="view-downloads" data-view-panel="downloads" hidden>
       <div class="page-heading"><span class="eyebrow"><span class="eyebrow-line"></span> ACESSIFOOD NO DESKTOP</span><h1>Leve sua experiência para o computador.</h1><p>Baixe a versão portátil para abrir o AcessiFood no Windows, macOS ou Linux. Quando o site estiver publicado em HTTPS, também será possível instalá-lo como aplicativo pelo navegador.</p></div>
       <div class="download-grid">
-        <article class="download-card download-card-featured"><div class="download-os windows" aria-hidden="true">↓</div><span class="download-kicker">DOWNLOAD DISPONÍVEL</span><h2>Versão portátil para computador</h2><p>Pacote ZIP com o site, imagens e atalhos de inicialização. Não precisa instalar dependências: extraia a pasta e abra o iniciador do seu sistema.</p><a class="btn btn-primary download-link" href="downloads/AcessiFood-Desktop-Portatil.zip" download="AcessiFood-Desktop-Portatil.zip">Baixar versão desktop (.ZIP) <span aria-hidden="true">↓</span></a><small>Funciona com um navegador moderno. Os dados ficam salvos localmente no navegador em que o projeto for aberto.</small></article>
+        <article class="download-card download-card-featured"><div class="download-os windows" aria-hidden="true">↓</div><span class="download-kicker">PAINEL DESKTOP + SUPABASE</span><h2>Projeto do Desktop integrado ao banco</h2><p>Pacote-fonte do aplicativo Electron e configuração para compartilhar dados com o site pelo projeto Supabase.</p><a class="btn btn-primary download-link" href="downloads/AcessiFood-Desktop-Supabase.zip" download="AcessiFood-Desktop-Supabase.zip">Baixar Desktop + Supabase (.ZIP) <span aria-hidden="true">↓</span></a><small>Este ZIP contém o código-fonte, não um instalador .EXE. Requer Node.js e as credenciais públicas do projeto Supabase.</small></article>
         <article class="download-card"><div class="download-os linux" aria-hidden="true">▣</div><span class="download-kicker">INSTALAÇÃO PELO NAVEGADOR</span><h2>Instalar como aplicativo</h2><p>Em um site publicado em HTTPS, navegadores compatíveis podem instalar o AcessiFood na área de trabalho e abrir em uma janela própria.</p><button id="installDesktopBtn" type="button" class="btn btn-outline" disabled>Instalação pelo navegador</button><small id="installDesktopStatus" role="status" aria-live="polite">A instalação aparecerá quando o site estiver hospedado em HTTPS e o navegador oferecer suporte. Por enquanto, use o download portátil.</small></article>
       </div>
-      <div class="download-notice"><strong>Importante sobre esta versão</strong><p>O ZIP contém a versão web portátil, não um instalador nativo .EXE ou .DMG. Para instalar pelo navegador, publique os arquivos em um endereço HTTPS. Pagamentos, entregas e sincronização entre dispositivos continuam sendo demonstrativos.</p></div>
-      <div class="export-backup"><div><h2>Seus dados locais</h2><p>Exporte uma cópia dos produtos, preferências, perfil e pedidos armazenados neste navegador.</p></div><button id="exportBackup" type="button" class="btn btn-primary">Baixar backup JSON ↓</button><label class="btn btn-outline file-label">Restaurar backup JSON ↑<input id="importBackup" type="file" accept=".json,application/json" hidden></label></div>
-      <p class="form-footnote">O backup pode conter informações de perfil e pedidos. Guarde o arquivo em local seguro. Os dados não são sincronizados entre navegadores ou dispositivos.</p>
+      <div class="download-notice"><strong>Importante sobre esta versão</strong><p>O ZIP contém a versão web portátil, não um instalador nativo .EXE ou .DMG. Para instalar pelo navegador, publique os arquivos em um endereço HTTPS. Pagamentos e entregas continuam demonstrativos. A sincronização entre site e Desktop exige configurar ambos com a mesma URL e chave pública do projeto Supabase.</p></div>
+      <p class="portable-web-link">Quer apenas abrir o protótipo no navegador? <a href="downloads/AcessiFood-Desktop-Portatil.zip" download="AcessiFood-Desktop-Portatil.zip">Baixar também a versão web portátil (.ZIP)</a>.</p>
+      <section class="panel database-setup" aria-labelledby="databaseSetupTitle"><div class="panel-heading"><div><h2 id="databaseSetupTitle">Banco de dados compartilhado</h2><p>Site e Desktop usam o mesmo projeto Supabase.</p></div><span class="db-setup-badge">Supabase</span></div><div class="database-steps"><article><span>1</span><div><strong>Crie as tabelas</strong><p>No painel Supabase, abra o SQL Editor e execute o arquivo <code>desktop/schema.sql</code> do projeto.</p></div></article><article><span>2</span><div><strong>Configure o site</strong><p>Abra <code>supabase-config.js</code> e preencha a URL do projeto e a chave pública publishable/anon.</p><pre>window.ACCESSIFOOD_SUPABASE_URL = 'https://seu-projeto.supabase.co';
+window.ACCESSIFOOD_SUPABASE_ANON_KEY = 'sua-chave-publica';</pre></div></article><article><span>3</span><div><strong>Configure o Desktop</strong><p>Na pasta <code>desktop</code>, copie <code>.env.example</code> para <code>.env</code> e use a mesma URL e chave pública.</p><pre>cd desktop
+npm install
+npm start</pre></div></article><article><span>4</span><div><strong>Abra o site</strong><p>Sirva a pasta principal por HTTP local ou hospede-a em HTTPS.</p><pre>python -m http.server 5500</pre></div></article></div><p class="form-footnote"><strong>Atenção:</strong> o SQL incluído está configurado para demonstração sem login e permite acesso compartilhado amplo. Use apenas dados fictícios. Antes de publicar com dados reais, implemente Supabase Auth e políticas RLS restritas por usuário. Nunca use uma chave secret/service_role no site ou no Desktop.</p></section>
+      <div class="export-backup"><div><h2>Backup dos seus dados</h2><p>Exporte uma cópia dos produtos, preferências, perfil e pedidos do AcessiFood, incluindo os dados carregados do banco compartilhado.</p></div><button id="exportBackup" type="button" class="btn btn-primary">Baixar backup JSON ↓</button><label class="btn btn-outline file-label">Restaurar backup JSON ↑<input id="importBackup" type="file" accept=".json,application/json" hidden></label></div>
+      <p class="form-footnote">O backup pode conter informações de perfil e pedidos. Guarde o arquivo em local seguro. Quando a conexão está ativa, o Supabase é a fonte compartilhada entre o site e o Desktop.</p>
     </section>
   </main>
 
   <footer class="footer">
     <div class="wrap footer-main">
-      <div><a class="brand footer-brand" href="#inicio" data-view-link="home"><span class="brand-symbol">a</span><span class="brand-word">Acessi<span>Food</span><small>COMIDA BOA PARA TODOS</small></span></a><p>Mais autonomia para quem compra.<br>Mais oportunidade para quem vende.</p></div>
+      <div><a class="brand footer-brand" href="#inicio" data-view-link="home" aria-label="AcessiFood — página inicial"><img class="brand-logo-horizontal" src="./assets/icon-512.png" alt="AcessiFood — comida boa para todos"></a><p>Mais autonomia para quem compra.<br>Mais oportunidade para quem vende.</p></div>
       <div class="footer-links"><strong>Explore</strong><button data-view="about" type="button">Objetivo do projeto</button><button data-view="home" type="button">Cardápio</button><button data-view="preferences" type="button">Preferências</button><button data-view="orders" type="button">Meus pedidos</button></div>
       <div class="footer-links"><strong>Para negócios</strong><button data-view="seller" type="button">Área do vendedor</button><button data-view="downloads" type="button">Versão desktop</button><button id="footerAccess" type="button">Acessibilidade</button></div>
       <div class="footer-note"><span aria-hidden="true">♡</span><strong>A inclusão faz parte da receita.</strong><small>Um protótipo em evolução, criado para aproximar pessoas e pequenos negócios.</small></div>
     </div>
-    <div class="wrap footer-bottom"><span>© 2026 AcessiFood · Projeto demonstrativo</span><span>HTML · CSS · JavaScript · Armazenamento local</span></div>
+    <div class="wrap footer-bottom"><span>© 2026 AcessiFood · Projeto demonstrativo</span><span>HTML · CSS · JavaScript · Supabase · PostgreSQL</span></div>
   </footer>
 
   <!-- CART DRAWER -->
@@ -410,6 +405,6 @@
   </div>
   <div id="readingGuide" class="reading-guide" aria-hidden="true" hidden></div>
   <div class="sr-only" id="liveAnnouncement" aria-live="polite" role="status"></div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  
 </body>
 </html>

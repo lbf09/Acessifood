@@ -1,6 +1,6 @@
 {
   "id": "./index.html",
-  "name": "AcessiFood — Sabor, autonomia e inclusão",
+  "name": "AcessiFood — alimentação acessível",
   "short_name": "AcessiFood",
   "description": "Plataforma demonstrativa de alimentação inclusiva para clientes e pequenos vendedores.",
   "lang": "pt-BR",
@@ -8,11 +8,25 @@
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#fffaf6",
-  "theme_color": "#c64032",
-  "categories": ["food", "shopping", "lifestyle"],
+  "background_color": "#ffffff",
+  "theme_color": "#1351b4",
+  "categories": [
+    "food",
+    "shopping",
+    "lifestyle"
+  ],
   "icons": [
-    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
   ]
 }

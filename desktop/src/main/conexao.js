@@ -1,12 +1,15 @@
-require('dotenv').config({ quiet: true });
-const mysql = require('mysql2');
+require('dotenv').config({ path: require('path').join(__dirname, '../../.env'), quiet: true });
+const { createClient } = require('@supabase/supabase-js');
 
-const conexao = mysql.createConnection({
-  host: process.env.DB_HOST,
-  port: Number(process.env.DB_PORT) || 3306,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
-});
+const url = String(process.env.SUPABASE_URL || '').trim();
+const key = String(process.env.SUPABASE_ANON_KEY || '').trim();
+const configValida = /^https:\/\/.+\.supabase\.co$/i.test(url) && key && !/sua-chave|your-|placeholder/i.test(key);
 
-module.exports = conexao;
+const supabase = configValida ? createClient(url, key, {
+  auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false }
+}) : null;
+
+module.exports = {
+  supabase,
+  erroConfiguracao: configValida ? null : 'Configure SUPABASE_URL e SUPABASE_ANON_KEY no arquivo desktop/.env.'
+};

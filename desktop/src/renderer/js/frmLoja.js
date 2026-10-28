@@ -5,6 +5,7 @@ document.querySelector("#formLoja").addEventListener("submit", async (e) => {
     await window.api.criarLoja(dados);
     alert("Loja cadastrada com sucesso!");
     e.target.reset();
+    if (window.api.fecharJanelaAtual) await window.api.fecharJanelaAtual();
   } catch (erro) {
     console.error("Erro ao cadastrar loja:", erro);
     alert("Não foi possível cadastrar a loja.");
