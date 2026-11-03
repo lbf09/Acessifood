@@ -1,4 +1,4 @@
-const CACHE_NAME = 'acessifood-shell-v10-accessibility-tools';
+const CACHE_NAME = 'acessifood-shell-v10-wai-gaia-customization';
 const APP_SHELL = [
   './', './index.html', './style.css', './app.js', './supabase-config.js', './supabase-sync.js', './manifest.webmanifest',
   './assets/icon-192.png', './assets/icon-512.png',
