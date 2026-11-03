@@ -288,3 +288,12 @@ td small{font-size:12px;line-height:1.5}
 
 /* Logo atualizado 20261027: usa arquivo novo para descartar referências antigas */
 .brand-logo-horizontal{display:block;width:100%;max-width:202px;height:auto;max-height:66px;min-height:0;object-fit:contain;object-position:left center;opacity:1;visibility:visible}
+
+
+/* Ferramentas de acessibilidade do Desktop */
+.skip-link{position:fixed;left:12px;top:-70px;z-index:9999;background:#fff;color:#111;padding:12px 16px;border:3px solid #1351b4;border-radius:4px;font-weight:700}.skip-link:focus{top:12px}
+.accessibility-toggle{border:1px solid var(--line,#ccd3dc);background:#fff;color:#172033;border-radius:6px;padding:9px 11px;font:inherit;font-size:12px;font-weight:700;cursor:pointer;min-height:42px}
+.accessibility-toggle:focus-visible,.nav-item:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ffbf47;outline-offset:3px}
+body.a11y-larger-text{font-size:1.16em}body.a11y-larger-text p,body.a11y-larger-text td,body.a11y-larger-text th,body.a11y-larger-text label,body.a11y-larger-text button,body.a11y-larger-text small{font-size:1.12em}
+body.a11y-high-contrast{--ink:#000!important;--muted:#252525!important;--line:#333!important;background:#fff!important;color:#000!important}body.a11y-high-contrast .panel,body.a11y-high-contrast .metric-card,body.a11y-high-contrast .report-stat,body.a11y-high-contrast .topbar{background:#fff!important;color:#000!important;border:2px solid #222!important}body.a11y-high-contrast button,body.a11y-high-contrast a{outline-color:#000}
+body.a11y-reduce-motion *,body.a11y-reduce-motion *::before,body.a11y-reduce-motion *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
