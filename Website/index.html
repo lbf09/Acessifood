@@ -11,8 +11,9 @@
   <meta name="description" content="AcessiFood: uma plataforma de alimentação inclusiva para clientes e pequenos vendedores.">
   <title>AcessiFood — Sabor, autonomia e inclusão</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-512.png">
-  <link rel="apple-touch-icon" href="assets/icon-512.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/icon-512.png">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
   <link rel="stylesheet" href="style.css">
   <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script defer src="supabase-config.js"></script>
@@ -158,6 +159,10 @@
       <section class="about-section project-flow-section">
         <div class="section-head"><div><span class="eyebrow"><span class="eyebrow-line"></span> COMO A PROPOSTA SE CONECTA</span><h2>Da descoberta ao acompanhamento.</h2><p>O AcessiFood organiza o caminho em tarefas simples e explica o que acontece em cada etapa.</p></div></div>
         <div class="project-flow"><div><span>1</span><strong>Descobrir</strong><small>Buscar produtos e filtrar opções.</small></div><div><span>2</span><strong>Personalizar</strong><small>Ajustar acessibilidade e preferências.</small></div><div><span>3</span><strong>Escolher</strong><small>Conferir descrição, preço e características.</small></div><div><span>4</span><strong>Acompanhar</strong><small>Consultar pedidos e status.</small></div></div>
+        <section class="about-section accessibility-references" aria-labelledby="accessibilityReferencesTitle">
+          <div class="section-head"><div><h2 id="accessibilityReferencesTitle">Referências de acessibilidade</h2><p>As opções de personalização foram inspiradas em recomendações abertas. Isso não representa, por si só, uma certificação de conformidade WCAG; é necessário testar com tecnologias assistivas e pessoas usuárias.</p></div></div>
+          <ul><li><a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer">WCAG 2.2 — W3C</a>: conteúdo perceptível, operável, compreensível e robusto.</li><li><a href="https://gaia.wiki.br/" target="_blank" rel="noopener noreferrer">GAIA</a>: customização visual e informacional, interfaces flexíveis e modo de leitura.</li><li><a href="https://www.handtalk.me/br/blog/acessibilidade-daltonicos/" target="_blank" rel="noopener noreferrer">Hand Talk — acessibilidade para pessoas daltônicas</a>: não transmitir informação apenas por cor e manter contraste e rótulos textuais.</li><li><a href="https://www.w3.org/WAI/adapt/" target="_blank" rel="noopener noreferrer">WAI-Adapt</a>: permitir que a pessoa personalize a apresentação do conteúdo conforme suas preferências.</li></ul>
+        </section>
         <p class="prototype-disclaimer"><strong>Sobre esta versão:</strong> este site é um protótipo funcional de front-end. O objetivo e a proposta representam o projeto; pagamento, entrega, contas de usuário e sincronização com vendedores reais ainda exigem backend e integrações próprias. Os rótulos alimentares não substituem a confirmação de ingredientes com o vendedor.</p>
       </section>
     </section>
@@ -181,7 +186,28 @@
           <div class="field"><label for="allergies">Alergias alimentares</label><input id="allergies" name="allergies" placeholder="Ex.: amendoim, camarão, castanhas"><small>Campo informativo. A busca não substitui a confirmação com o restaurante.</small></div>
           <div class="form-two"><div class="field"><label for="taste">Prefere</label><select id="taste" name="taste"><option value="both">Doce e salgado</option><option value="sweet">Doce</option><option value="savory">Salgado</option></select></div>
           <div class="field"><label for="temperature">Clima / temperatura</label><select id="temperature" name="temperature"><option value="any">Sem preferência</option><option value="cold">Prefiro opções quentes (ex.: sopa)</option><option value="hot">Prefiro opções refrescantes (ex.: sorvete)</option></select></div></div>
-          <div class="panel-heading subsection"><div><h2>Acessibilidade visual e de interação</h2><p>As mudanças são aplicadas imediatamente e ficam salvas no dispositivo; com a API conectada, também são sincronizadas com o banco compartilhado.</p></div><span class="panel-step">02</span></div>
+          <div class="panel-heading subsection"><div><h2>Aparência e organização</h2><p>Personalize cores, fonte e a forma de organizar os produtos. As alterações são aplicadas imediatamente e salvas neste dispositivo.</p></div><span class="panel-step">02</span></div>
+          <section class="customization-panel" aria-labelledby="appearanceSettingsTitle">
+            <h3 id="appearanceSettingsTitle">Cores e paletas</h3>
+            <p class="customization-help">As paletas azul e laranja ou azul e amarelo usam tons distinguíveis; não são um simulador médico de daltonismo. Informações importantes devem continuar identificadas por texto, símbolos e rótulos.</p>
+            <div class="customization-grid">
+              <div class="field"><label for="prefColorPalette">Paleta de cores</label><select id="prefColorPalette" name="colorPalette" data-custom-pref="colorPalette"><option value="gov-blue">Azul institucional</option><option value="blue-orange">Azul e laranja — tons bem distintos</option><option value="blue-yellow">Azul e amarelo</option><option value="monochrome">Preto, branco e cinza</option><option value="custom">Personalizada</option></select></div>
+              <div class="field"><label for="prefCustomPrimary">Cor principal</label><input type="color" id="prefCustomPrimary" name="customPrimary" data-custom-pref="customPrimary" value="#1351b4"><small>Botões e elementos de destaque.</small></div>
+              <div class="field"><label for="prefCustomAccent">Cor de destaque</label><input type="color" id="prefCustomAccent" name="customAccent" data-custom-pref="customAccent" value="#ffcd07"><small>Etiquetas e detalhes visuais.</small></div>
+              <div class="field"><label for="prefCustomBackground">Cor do fundo</label><input type="color" id="prefCustomBackground" name="customBackground" data-custom-pref="customBackground" value="#ffffff"></div>
+              <div class="field"><label for="prefCustomText">Cor do texto</label><input type="color" id="prefCustomText" name="customText" data-custom-pref="customText" value="#172033"></div>
+            </div>
+            <p class="contrast-status" id="customContrastStatus" role="status" aria-live="polite">Verificação de contraste aparecerá aqui.</p>
+            <div class="customization-divider"></div>
+            <h3>Fonte e tamanho</h3>
+            <div class="customization-grid">
+              <div class="field"><label for="prefFontFamily">Tipo de letra</label><select id="prefFontFamily" name="fontFamily" data-custom-pref="fontFamily"><option value="arial">Arial (padrão)</option><option value="verdana">Verdana</option><option value="tahoma">Tahoma</option><option value="trebuchet">Trebuchet MS</option><option value="georgia">Georgia</option><option value="monospace">Monoespaçada</option></select></div>
+              <div class="field"><label for="prefFontScale">Tamanho geral: <output id="fontScaleValue" for="prefFontScale">100%</output></label><input type="range" id="prefFontScale" name="fontScale" data-custom-pref="fontScale" min="90" max="160" step="5" value="100"><small>90% a 160%. O zoom do navegador continua disponível.</small></div>
+              <div class="field"><label for="prefLayoutMode">Organização da página</label><select id="prefLayoutMode" name="layoutMode" data-custom-pref="layoutMode"><option value="comfortable">Equilibrada (padrão)</option><option value="compact">Compacta — mais conteúdo por tela</option><option value="list">Lista — produtos em linhas</option><option value="reading">Leitura — coluna estreita e menos distrações</option></select></div>
+              <div class="field"><label for="prefCardColumns">Colunas do cardápio</label><select id="prefCardColumns" name="cardColumns" data-custom-pref="cardColumns"><option value="1">1 coluna</option><option value="2">2 colunas</option><option value="3">3 colunas</option><option value="4">4 colunas</option></select><small>Em telas pequenas, a grade se ajusta para evitar conteúdo apertado.</small></div>
+            </div>
+          </section>
+          <div class="panel-heading subsection"><div><h2>Acessibilidade visual e de interação</h2><p>Ative os ajustes que funcionam melhor para você. As opções são aplicadas à página toda.</p></div><span class="panel-step">03</span></div>
           <div class="setting-row"><span><strong>Texto ampliado</strong><small>Aumenta o tamanho dos textos e controles.</small></span><label class="switch"><input type="checkbox" name="largeText" id="prefLargeText" data-a11y-pref="largeText"><span></span><em class="sr-only">Ativar texto ampliado</em></label></div>
           <div class="setting-row"><span><strong>Alto contraste</strong><small>Reforça o contraste entre texto, fundo e controles.</small></span><label class="switch"><input type="checkbox" name="highContrast" id="prefHighContrast" data-a11y-pref="highContrast"><span></span><em class="sr-only">Ativar alto contraste</em></label></div>
           <div class="setting-row"><span><strong>Reduzir animações</strong><small>Reduz movimentos e transições decorativas.</small></span><label class="switch"><input type="checkbox" name="reducedMotion" id="prefReducedMotion" data-a11y-pref="reducedMotion"><span></span><em class="sr-only">Reduzir animações</em></label></div>
@@ -374,6 +400,64 @@ npm start</pre></div></article><article><span>4</span><div><strong>Abra o site</
         </div></fieldset>
         <div class="field"><label for="productOffer">Desconto promocional (%)</label><input id="productOffer" name="offer" type="number" min="0" max="90" step="1" value="0"><small>Opcional. O desconto aparece no cardápio e no preço do produto.</small></div>
         <div class="form-actions"><button type="button" class="btn btn-outline" data-close-product>Cancelar</button><button type="submit" class="btn btn-primary">Salvar produto</button></div>
+      </form>
+    </section>
+  </div>
+
+  <!-- PRIMEIRA VISITA: PERSONALIZAÇÃO INICIAL -->
+  <div class="modal-layer onboarding-layer" id="onboardingModal" hidden>
+    <div class="modal-backdrop onboarding-backdrop"></div>
+    <section class="modal onboarding-modal" role="dialog" aria-modal="true" aria-labelledby="onboardingTitle" aria-describedby="onboardingDescription">
+      <div class="onboarding-heading">
+        <span class="eyebrow">VAMOS PERSONALIZAR</span>
+        <h2 id="onboardingTitle">Como você prefere usar o AcessiFood?</h2>
+        <p id="onboardingDescription">Escolha a apresentação que fica mais confortável para você. São três etapas curtas; tudo pode ser alterado depois em Preferências.</p>
+        <div class="onboarding-progress" aria-label="Progresso da configuração"><span data-onboarding-indicator="1" class="is-current">1. Aparência</span><span data-onboarding-indicator="2">2. Organização</span><span data-onboarding-indicator="3">3. Acessibilidade</span></div>
+      </div>
+      <form id="onboardingForm">
+        <section class="onboarding-step" data-onboarding-step="1" aria-labelledby="onboardingAppearanceTitle">
+          <h3 id="onboardingAppearanceTitle">Escolha suas cores e sua fonte</h3>
+          <div class="customization-grid">
+            <div class="field"><label for="onboardingColorPalette">Paleta de cores</label><select id="onboardingColorPalette" name="colorPalette" data-custom-pref="colorPalette"><option value="gov-blue">Azul institucional</option><option value="blue-orange">Azul e laranja — tons bem distintos</option><option value="blue-yellow">Azul e amarelo</option><option value="monochrome">Preto, branco e cinza</option><option value="custom">Personalizada</option></select></div>
+            <div class="field"><label for="onboardingFontFamily">Tipo de letra</label><select id="onboardingFontFamily" name="fontFamily" data-custom-pref="fontFamily"><option value="arial">Arial</option><option value="verdana">Verdana</option><option value="tahoma">Tahoma</option><option value="trebuchet">Trebuchet MS</option><option value="georgia">Georgia</option><option value="monospace">Monoespaçada</option></select></div>
+            <div class="field"><label for="onboardingPrimary">Cor principal</label><input type="color" id="onboardingPrimary" name="customPrimary" data-custom-pref="customPrimary" value="#1351b4"></div>
+            <div class="field"><label for="onboardingAccent">Cor de destaque</label><input type="color" id="onboardingAccent" name="customAccent" data-custom-pref="customAccent" value="#ffcd07"></div>
+            <div class="field"><label for="onboardingBackground">Cor do fundo</label><input type="color" id="onboardingBackground" name="customBackground" data-custom-pref="customBackground" value="#ffffff"></div>
+            <div class="field"><label for="onboardingText">Cor do texto</label><input type="color" id="onboardingText" name="customText" data-custom-pref="customText" value="#172033"></div>
+            <div class="field"><label for="onboardingFontScale">Tamanho geral: <output id="onboardingFontScaleValue" for="onboardingFontScale">100%</output></label><input type="range" id="onboardingFontScale" name="fontScale" data-custom-pref="fontScale" min="90" max="160" step="5" value="100"></div>
+          </div>
+          <p class="contrast-status" id="onboardingContrastStatus" role="status" aria-live="polite">Escolha as cores e confira o contraste.</p>
+          <p class="customization-help">Dica: não usamos somente a cor para comunicar status. Paletas alternativas não simulam exatamente a visão de uma pessoa daltônica; elas oferecem combinações com distinção visual.</p>
+        </section>
+        <section class="onboarding-step" data-onboarding-step="2" aria-labelledby="onboardingLayoutTitle" hidden>
+          <h3 id="onboardingLayoutTitle">Organize a página como preferir</h3>
+          <div class="customization-grid">
+            <div class="field"><label for="onboardingLayoutMode">Organização</label><select id="onboardingLayoutMode" name="layoutMode" data-custom-pref="layoutMode"><option value="comfortable">Equilibrada — padrão</option><option value="compact">Compacta — mais conteúdo por tela</option><option value="list">Lista — produtos em linhas</option><option value="reading">Leitura — coluna estreita e menos distrações</option></select></div>
+            <div class="field"><label for="onboardingColumns">Colunas no cardápio</label><select id="onboardingColumns" name="cardColumns" data-custom-pref="cardColumns"><option value="1">1 coluna</option><option value="2">2 colunas</option><option value="3">3 colunas</option><option value="4">4 colunas</option></select></div>
+          </div>
+          <div class="onboarding-tip"><strong>Você mantém o controle.</strong><p>O modo lista organiza os pratos em linhas; o modo leitura reduz a largura do conteúdo; o modo compacto diminui espaços entre cartões. Em celulares, as colunas são limitadas para manter a legibilidade.</p></div>
+        </section>
+        <section class="onboarding-step" data-onboarding-step="3" aria-labelledby="onboardingAccessTitle" hidden>
+          <h3 id="onboardingAccessTitle">Ative os recursos que ajudam você</h3>
+          <div class="onboarding-options">
+            <label class="check-card"><input type="checkbox" name="largeText"><span class="check-custom"></span><span><strong>Texto maior</strong><small>Aumenta a leitura da interface.</small></span></label>
+            <label class="check-card"><input type="checkbox" name="highContrast"><span class="check-custom"></span><span><strong>Alto contraste</strong><small>Destaca texto, limites e controles.</small></span></label>
+            <label class="check-card"><input type="checkbox" name="readableFont"><span class="check-custom"></span><span><strong>Fonte simples e espaçada</strong><small>Ajuda a acompanhar os textos.</small></span></label>
+            <label class="check-card"><input type="checkbox" name="reducedMotion"><span class="check-custom"></span><span><strong>Reduzir movimentos</strong><small>Minimiza animações decorativas.</small></span></label>
+            <label class="check-card"><input type="checkbox" name="focusMode"><span class="check-custom"></span><span><strong>Menos distrações</strong><small>Oculta alguns elementos decorativos.</small></span></label>
+            <label class="check-card"><input type="checkbox" name="highlightLinks"><span class="check-custom"></span><span><strong>Links sublinhados</strong><small>Não dependem apenas da cor.</small></span></label>
+            <label class="check-card"><input type="checkbox" name="largeControls"><span class="check-custom"></span><span><strong>Controles maiores</strong><small>Amplia áreas de toque e botões.</small></span></label>
+            <label class="check-card"><input type="checkbox" name="darkMode"><span class="check-custom"></span><span><strong>Modo escuro</strong><small>Usa uma interface de baixa luminosidade.</small></span></label>
+          </div>
+          <p class="customization-help">Essas opções não substituem leitores de tela ou outras tecnologias assistivas; o site continua permitindo navegação por teclado e zoom do navegador.</p>
+        </section>
+        <div class="onboarding-actions">
+          <button type="button" class="btn btn-outline" id="onboardingBack" hidden>Voltar</button>
+          <button type="button" class="btn btn-outline" id="onboardingDefault">Usar padrão por enquanto</button>
+          <span class="onboarding-spacer"></span>
+          <button type="button" class="btn btn-primary" id="onboardingNext">Continuar</button>
+          <button type="submit" class="btn btn-primary" id="onboardingFinish" hidden>Aplicar e começar</button>
+        </div>
       </form>
     </section>
   </div>
