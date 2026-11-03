@@ -97,19 +97,24 @@ function abrirModalLoja(janelaPrincipal) {
   modal.loadFile(path.join(__dirname, '../renderer/frmLoja.html'));
 }
 
-function abrirModalProduto(janelaPrincipal) {
-  const modal = new BrowserWindow({ width: 520, height: 680, parent: janelaPrincipal, modal: true, webPreferences: { preload: path.join(__dirname, 'preload.js') } });
+function abrirModalProduto(janelaPrincipal, produtoId = null) {
+  const modal = new BrowserWindow({ width: 520, height: 720, parent: janelaPrincipal, modal: true, webPreferences: { preload: path.join(__dirname, 'preload.js') } });
   modal.removeMenu();
-  modal.loadFile(path.join(__dirname, '../renderer/frmProduto.html'));
+  const query = {};
+  if (produtoId !== null && produtoId !== undefined) {
+    if (typeof produtoId === 'object' && produtoId.source === 'shared') query.produtoCompartilhadoId = encodeURIComponent(String(produtoId.id));
+    else query.produtoId = String(produtoId);
+  }
+  modal.loadFile(path.join(__dirname, '../renderer/frmProduto.html'), { query });
 }
 
 app.whenReady().then(async () => {
   await testarConexao();
 
-  const janelaPrincipal = new BrowserWindow({ width: 1050, height: 750, icon: path.join(__dirname, '../../../assets/icon-512.png'), webPreferences: { preload: path.join(__dirname, 'preload.js') } });
+  const janelaPrincipal = new BrowserWindow({ width: 1050, height: 750, icon: path.join(__dirname, '../../assets/icon-512-20261027.png'), webPreferences: { preload: path.join(__dirname, 'preload.js') } });
   janelaPrincipal.loadFile(path.join(__dirname, '../renderer/frmPrincipal.html'));
   ipcMain.handle('janela:abrirLoja', () => abrirModalLoja(janelaPrincipal));
-  ipcMain.handle('janela:abrirProduto', () => abrirModalProduto(janelaPrincipal));
+  ipcMain.handle('janela:abrirProduto', (_event, produtoId) => abrirModalProduto(janelaPrincipal, produtoId));
   ipcMain.handle('janela:fecharAtual', event => { const atual = BrowserWindow.fromWebContents(event.sender); if (atual && atual.getParentWindow()) atual.close(); return true; });
 
   Menu.setApplicationMenu(Menu.buildFromTemplate([
@@ -157,6 +162,19 @@ app.whenReady().then(async () => {
     const { data: loja, error: erroLoja } = await supabase.from('loja').select('id, nome, dono_nome, endereco').eq('id', prod.loja_id).single();
     if (erroLoja) throw erroLoja;
     try { await sincronizarProdutoComEstado(data, data.id, loja); } catch (e) { console.error('Falha ao sincronizar produto no estado compartilhado:', e); }
+    return data;
+  });
+
+  ipcMain.handle('produto:editar', async (_event, id, prod) => {
+    if (!supabase) throw new Error(erroConfiguracao);
+    const { data, error } = await supabase.from('produto').update({
+      loja_id: Number(prod.loja_id), nome: prod.nome, preco: Number(prod.preco), descricao: prod.descricao || '',
+      clima: prod.clima || 'Todos', apimentado: Boolean(prod.apimentado), gluten: Boolean(prod.gluten), lactose: Boolean(prod.lactose)
+    }).eq('id', Number(id)).select().single();
+    if (error) throw error;
+    const { data: loja, error: erroLoja } = await supabase.from('loja').select('id, nome, dono_nome, endereco').eq('id', data.loja_id).single();
+    if (erroLoja) throw erroLoja;
+    await sincronizarProdutoComEstado(data, data.id, loja);
     return data;
   });
 
