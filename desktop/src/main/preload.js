@@ -8,11 +8,12 @@ contextBridge.exposeInMainWorld('api', {
 
   // Operações de Produtos
   criarProduto: (produto) => ipcRenderer.invoke('produto:criar', produto),
+  editarProduto: (id, produto) => ipcRenderer.invoke('produto:editar', id, produto),
   listarProdutos: () => ipcRenderer.invoke('produto:listar'),
   excluirProduto: (id) => ipcRenderer.invoke('produto:excluir', id),
 
   abrirModalLoja: () => ipcRenderer.invoke('janela:abrirLoja'),
-  abrirModalProduto: () => ipcRenderer.invoke('janela:abrirProduto'),
+  abrirModalProduto: (produtoId) => ipcRenderer.invoke('janela:abrirProduto', produtoId),
   fecharJanelaAtual: () => ipcRenderer.invoke('janela:fecharAtual'),
 
   // Estado compartilhado entre o site e o Desktop
