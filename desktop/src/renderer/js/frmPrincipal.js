@@ -197,7 +197,7 @@ function renderProducts() {
   const term = ($('#productSearch').value || '').trim().toLocaleLowerCase('pt-BR');
   const status = $('#productStatus').value || 'all';
   const rows = (sharedState.products || []).filter(product => [product.name, product.category, product.storeName, product.description].join(' ').toLocaleLowerCase('pt-BR').includes(term) && (status === 'all' || (status === 'active' ? product.active : !product.active)));
-  $('#productsTable').innerHTML = rows.map(product => `<tr><td><div class="table-product"><img src="../../../assets/${escapeHtml(product.image || 'food-table.jpg')}" alt="" onerror="this.style.display='none'"><span><strong>${escapeHtml(product.name)}</strong><small>${escapeHtml(product.description || '')}</small></span></div></td><td>${escapeHtml(product.storeName || sharedState.store?.name || 'Minha loja')}</td><td>${escapeHtml(product.category || 'Outros')}</td><td><strong>${money(Number(product.price) * (1 - (Number(product.offer) || 0) / 100))}</strong>${Number(product.offer) > 0 ? `<small class="discount-note">${Number(product.offer)}% de desconto</small>` : ''}</td><td>${Number(product.stock) || 0}</td><td>${product.active ? '<span class="status-tag completed">Ativo</span>' : '<span class="status-tag cancelled">Pausado</span>'}</td><td><div class="row-actions"><button class="table-action" data-toggle-product="${escapeHtml(product.id)}">${product.active ? 'Pausar' : 'Ativar'}</button><button class="table-action danger" data-delete-product="${escapeHtml(product.id)}">Excluir</button></div></td></tr>`).join('');
+  $('#productsTable').innerHTML = rows.map(product => `<tr><td><div class="table-product"><img src="../../../assets/${escapeHtml(product.image || 'food-table.jpg')}" alt="" onerror="this.style.display='none'"><span><strong>${escapeHtml(product.name)}</strong><small>${escapeHtml(product.description || '')}</small></span></div></td><td>${escapeHtml(product.storeName || sharedState.store?.name || 'Minha loja')}</td><td>${escapeHtml(product.category || 'Outros')}</td><td><strong>${money(Number(product.price) * (1 - (Number(product.offer) || 0) / 100))}</strong>${Number(product.offer) > 0 ? `<small class="discount-note">${Number(product.offer)}% de desconto</small>` : ''}</td><td>${Number(product.stock) || 0}</td><td>${product.active ? '<span class="status-tag completed">Ativo</span>' : '<span class="status-tag cancelled">Pausado</span>'}</td><td><div class="row-actions"><button class="table-action" data-edit-product="${escapeHtml(product.id)}">Editar</button><button class="table-action" data-toggle-product="${escapeHtml(product.id)}">${product.active ? 'Pausar' : 'Ativar'}</button><button class="table-action danger" data-delete-product="${escapeHtml(product.id)}">Excluir</button></div></td></tr>`).join('');
   $('#productsEmpty').hidden = rows.length > 0;
 }
 function renderStores() {
@@ -346,11 +346,40 @@ async function updateOrderStatus(orderId, status) {
   await saveSharedState(`Status do pedido ${orderId} atualizado.`);
   renderDashboard(); renderSales(); renderReport();
 }
+
+function setupAccessibilityTools() {
+  const key = 'acessifood.desktop.accessibility.v1';
+  let prefs = { largerText: false, highContrast: false, reduceMotion: false };
+  try { prefs = { ...prefs, ...JSON.parse(localStorage.getItem(key) || '{}') }; } catch (_) {}
+  const apply = () => {
+    document.body.classList.toggle('a11y-larger-text', prefs.largerText);
+    document.body.classList.toggle('a11y-high-contrast', prefs.highContrast);
+    document.body.classList.toggle('a11y-reduce-motion', prefs.reduceMotion);
+    [['btnA11yText','largerText'],['btnA11yContrast','highContrast'],['btnA11yMotion','reduceMotion']].forEach(([id,name]) => {
+      const button = document.getElementById(id); if (!button) return;
+      button.setAttribute('aria-pressed', String(Boolean(prefs[name])));
+    });
+    try { localStorage.setItem(key, JSON.stringify(prefs)); } catch (_) {}
+  };
+  [['btnA11yText','largerText'],['btnA11yContrast','highContrast'],['btnA11yMotion','reduceMotion']].forEach(([id,name]) => {
+    document.getElementById(id)?.addEventListener('click', () => { prefs[name] = !prefs[name]; apply(); });
+  });
+  apply();
+}
+
 function bindEvents() {
-  $$('.nav-item').forEach(button => button.addEventListener('click', () => goToScreen(button.dataset.screen)));
+  setupAccessibilityTools();
+  $$('.nav-item').forEach(button => button.addEventListener('click', () => goToScreen(button.dataset.screen))); 
   document.addEventListener('click', event => {
     const go = event.target.closest('[data-go]');
     if (go) { goToScreen(go.dataset.go); return; }
+    const edit = event.target.closest('[data-edit-product]');
+    if (edit) {
+      const id = edit.dataset.editProduct;
+      if (String(id).startsWith('supabase-product-')) window.api.abrirModalProduto(Number(String(id).replace('supabase-product-', '')));
+      else window.api.abrirModalProduto({ source: 'shared', id: String(id) });
+      return;
+    }
     const toggle = event.target.closest('[data-toggle-product]');
     if (toggle) { toggleProduct(toggle.dataset.toggleProduct); return; }
     const remove = event.target.closest('[data-delete-product]');
